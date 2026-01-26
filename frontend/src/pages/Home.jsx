@@ -162,7 +162,7 @@ const Home = () => {
 
       {/* Product Categories - Overhauled UI */}
       <Section>
-        <div className="max-w-7xl mx-auto px-6 py-14">
+        <div className="max-w-6xl mx-auto px-6 py-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -177,7 +177,7 @@ const Home = () => {
               Comprehensive range of pharmaceutical solutions
             </p>
           </motion.div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 justify-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 justify-center">
             {[
               'Anti-Malarials',
               'Anti-Diabetics',
@@ -217,7 +217,7 @@ const Home = () => {
 
       {/* Brand Wall - Clickable Logos - Light Grey Background */}
       <Section bgSlate>
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -253,7 +253,7 @@ const Home = () => {
       </Section>
 
       {/* B2B Growth Hub - Emerald Green Background with White Text */}
-      <div className="bg-[#059669] text-white py-21">
+      <div className="bg-[#059669] text-white py-10">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -301,12 +301,12 @@ const Home = () => {
 
       {/* Authority Block - Over 5 Million People Served with Lifestyle Image */}
       <div 
-        className="relative py-21 overflow-hidden min-h-[400px] bg-cover bg-center"
+        className="relative py-10 overflow-hidden min-h-[400px] bg-cover bg-center"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${encodeURI('/portrait-man-working-as-chemist.jpg')})`
         }}
       >
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -382,7 +382,7 @@ const Home = () => {
       </Section>
 
       {/* Global Impact - High-End Stats Section - "Total Symmetry" */}
-      <div className="bg-slate-50 py-14 md:py-22">
+      <div className="bg-slate-50 py-10">
         <div className="max-w-3xl mx-auto text-center mb-11">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -398,7 +398,7 @@ const Home = () => {
             </p>
           </motion.div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 w-full flex justify-center">
+        <div className="max-w-6xl mx-auto px-4 w-full flex justify-center">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10 w-full items-stretch">
             {[
               { number: '27+', label: 'Years of Excellence', icon: Activity },

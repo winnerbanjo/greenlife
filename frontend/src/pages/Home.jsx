@@ -101,7 +101,7 @@ const Home = () => {
         </div>
         
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-8 w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ const Home = () => {
 
       {/* At a Glance Bar - Clickable Stats - Light Medical Grey with Borders */}
       <div className="bg-slate-50 border-y border-slate-200 py-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { number: '27+', label: 'Years', sublabel: 'Experience', link: '/about#timeline' },
@@ -217,7 +217,7 @@ const Home = () => {
 
       {/* Brand Wall - Clickable Logos - Light Grey Background */}
       <Section bgSlate>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -254,7 +254,7 @@ const Home = () => {
 
       {/* B2B Growth Hub - Emerald Green Background with White Text */}
       <div className="bg-[#059669] text-white py-21">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -337,7 +337,7 @@ const Home = () => {
 
       {/* Timeline - Apple Style Vertical - White */}
       <Section>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

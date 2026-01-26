@@ -202,15 +202,23 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-slate-200 p-6 flex flex-col shadow-sm">
-        <h2 className="text-xl font-bold tracking-tighter text-slate-900 mb-8">Admin Panel</h2>
+      <aside className="w-64 bg-slate-900 border-r border-slate-800 p-6 flex flex-col shadow-lg">
+        <div className="mb-8">
+          <img
+            src={encodeURI('/GreenLife-logo-black (1).png')}
+            alt="Greenlife Pharmaceuticals"
+            className="h-10 w-auto object-contain brightness-0 invert mb-4"
+            style={{ imageRendering: '-webkit-optimize-contrast' }}
+          />
+          <h2 className="text-xl font-bold tracking-tighter text-white">Admin Panel</h2>
+        </div>
         <nav className="space-y-2 flex-1">
           <button
             onClick={() => setActiveTab('dashboard')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
               activeTab === 'dashboard'
                 ? 'bg-[#059669] text-white'
-                : 'text-slate-700 hover:text-slate-900 hover:bg-[#F8FAFC]'
+                : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <LayoutDashboard size={20} />
@@ -221,7 +229,7 @@ const Admin = () => {
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
               activeTab === 'products'
                 ? 'bg-[#059669] text-white'
-                : 'text-slate-700 hover:text-slate-900 hover:bg-[#F8FAFC]'
+                : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <Package size={20} />
@@ -232,7 +240,7 @@ const Admin = () => {
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
               activeTab === 'posts'
                 ? 'bg-[#059669] text-white'
-                : 'text-slate-700 hover:text-slate-900 hover:bg-[#F8FAFC]'
+                : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <FileText size={20} />
@@ -243,7 +251,7 @@ const Admin = () => {
           onClick={handleLogout}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm text-slate-700 hover:text-slate-900 hover:bg-[#F8FAFC] transition-all"
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all"
         >
           <LogOut size={20} />
           Logout
@@ -251,7 +259,8 @@ const Admin = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-8 overflow-y-auto bg-[#F8FAFC]">
+      <main className="flex-1 p-8 overflow-y-auto bg-white border-l border-slate-200">
+        <div className="max-w-[1440px] mx-auto">
         {activeTab === 'dashboard' && (
           <div>
             <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Traffic & Content Dashboard</h1>
@@ -393,56 +402,47 @@ const Admin = () => {
                 Add Product
               </motion.button>
             </div>
-            <div className="rounded-xl bg-white border border-slate-200 overflow-hidden shadow-sm">
-              <table className="w-full">
-                <thead className="bg-[#F8FAFC] border-b border-slate-200">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-slate-900 tracking-tighter">Image</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-slate-900 tracking-tighter">Name</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-slate-900 tracking-tighter">Category</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-slate-900 tracking-tighter">Featured</th>
-                    <th className="px-6 py-4 text-right text-sm font-bold text-slate-900 tracking-tighter">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map((product) => (
-                    <tr key={product._id} className="border-b border-slate-200 hover:bg-[#F8FAFC] transition-colors">
-                      <td className="px-6 py-4">
-                        <img src={encodeURI(product.imageUrl || '/placeholder.jpg')} alt={product.name} className="w-16 h-16 object-cover rounded-lg" />
-                      </td>
-                      <td className="px-6 py-4 text-slate-900 font-semibold">{product.name}</td>
-                      <td className="px-6 py-4 text-[#059669] text-sm">{product.category}</td>
-                      <td className="px-6 py-4">
-                        {product.featured ? (
-                          <span className="px-2 py-1 bg-[#059669]/10 text-[#059669] rounded text-xs font-semibold">Yes</span>
-                        ) : (
-                          <span className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">No</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => openEditProduct(product)}
-                            className="p-2 bg-[#F8FAFC] text-slate-700 rounded-lg hover:bg-slate-100 transition-colors"
-                          >
-                            <Edit size={18} />
-                          </motion.button>
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => handleDeleteProduct(product._id)}
-                            className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
-                          >
-                            <Trash2 size={18} />
-                          </motion.button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {products.map((product) => (
+                <motion.div
+                  key={product._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
+                >
+                  <div className="aspect-square bg-[#F8FAFC] rounded-lg overflow-hidden mb-4 flex items-center justify-center">
+                    <img 
+                      src={encodeURI(product.imageUrl || '/placeholder.jpg')} 
+                      alt={product.name} 
+                      className="max-w-full max-h-full object-contain" 
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">{product.name}</h3>
+                  <p className="text-sm text-[#059669] mb-3">{product.category}</p>
+                  {product.featured && (
+                    <span className="inline-block px-2 py-1 bg-[#059669]/10 text-[#059669] rounded text-xs font-semibold mb-3">Featured</span>
+                  )}
+                  <div className="flex items-center gap-2 mt-4">
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => openEditProduct(product)}
+                      className="flex-1 p-2 bg-[#F8FAFC] text-slate-700 rounded-lg hover:bg-slate-100 transition-colors text-sm font-semibold"
+                    >
+                      <Edit size={16} className="inline mr-1" />
+                      Edit
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => handleDeleteProduct(product._id)}
+                      className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                    >
+                      <Trash2 size={16} />
+                    </motion.button>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         )}
@@ -659,6 +659,7 @@ const Admin = () => {
             </motion.div>
           </div>
         )}
+        </div>
       </main>
     </div>
   );

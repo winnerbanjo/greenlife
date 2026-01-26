@@ -102,7 +102,7 @@ const About = () => {
       <div className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={encodeURI('/portrait-man-working-as-chemist.jpg')}
+            src={encodeURI('/portrait-woman-working-pharmaceutical-industry (3).jpg')}
             alt="About Background"
             className="w-full h-full object-cover"
           />

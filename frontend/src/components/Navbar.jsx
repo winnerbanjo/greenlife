@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Search, ChevronDown, History, Users, Star, Globe, Pill, Heart, Activity, Stethoscope, Package } from 'lucide-react';
 import { useState } from 'react';
 import { searchProducts } from '../utils/productData';
-import { getCloudinaryUrl, FALLBACK_IMAGE } from '../lib/cloudinary';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -92,13 +91,12 @@ const Navbar = () => {
             {/* Logo - Absolute Left */}
             <Link to="/" className="flex items-center flex-shrink-0">
               <motion.img
-                src={getCloudinaryUrl('/GreenLife-logo-black (1).png')}
+                src="/GreenLife-logo-black (1).png"
                 alt="Greenlife Pharmaceuticals"
                 className="h-12 w-auto object-contain"
                 style={{ imageRendering: '-webkit-optimize-contrast' }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: 'spring', stiffness: 400 }}
-                onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
               />
             </Link>
 

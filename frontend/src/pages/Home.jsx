@@ -7,7 +7,6 @@ import Footer from '../components/Footer';
 import ExpertSection from '../components/ExpertSection';
 import { getLifestyleImages } from '../utils/products';
 import { postsAPI } from '../utils/api';
-import { getCloudinaryUrl, FALLBACK_IMAGE } from '../lib/cloudinary';
 
 const Home = () => {
   const [insights, setInsights] = useState([]);
@@ -33,13 +32,13 @@ const Home = () => {
   };
 
   const productLogos = [
-    { logo: getCloudinaryUrl('/Group-2087326717.svg'), category: 'Anti-Malarials', product: 'Lonart' },
-    { logo: getCloudinaryUrl('/Group-2087326718.svg'), category: 'Anti-Malarials', product: 'P-alaxin' },
-    { logo: getCloudinaryUrl('/AMOXICLIQ.svg'), category: 'Antibiotics', product: 'Amoxicliq' },
-    { logo: getCloudinaryUrl('/Manix-1-1.svg'), category: 'Pain Management', product: 'Manix' },
-    { logo: getCloudinaryUrl('/Group-1000010927.svg'), category: 'Antibiotics', product: 'G-clav' },
-    { logo: getCloudinaryUrl('/Group-2087326719.svg'), category: 'Pain Management', product: null },
-    { logo: getCloudinaryUrl('/Group-2087326720.svg'), category: 'Anti-Malarials', product: null },
+    { logo: '/Group-2087326717.svg', category: 'Anti-Malarials', product: 'Lonart' },
+    { logo: '/Group-2087326718.svg', category: 'Anti-Malarials', product: 'P-alaxin' },
+    { logo: '/AMOXICLIQ.svg', category: 'Antibiotics', product: 'Amoxicliq' },
+    { logo: '/Manix-1-1.svg', category: 'Pain Management', product: 'Manix' },
+    { logo: '/Group-1000010927.svg', category: 'Antibiotics', product: 'G-clav' },
+    { logo: '/Group-2087326719.svg', category: 'Pain Management', product: null },
+    { logo: '/Group-2087326720.svg', category: 'Anti-Malarials', product: null },
   ];
 
   const categoryIcons = {
@@ -129,7 +128,6 @@ const Home = () => {
                   alt="Professional Pharmacist"
                   className="w-full h-full object-cover"
                   style={{ imageRendering: '-webkit-optimize-contrast' }}
-                  onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none rounded-2xl"></div>
@@ -251,7 +249,6 @@ const Home = () => {
                     alt="Product Logo"
                     className="max-h-20 max-w-20 object-contain group-hover:scale-110 transition-transform duration-500"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}
-                    onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                   />
                 </motion.div>
               </Link>
@@ -315,7 +312,6 @@ const Home = () => {
             alt="27 Years of Excellence"
             className="w-full h-full object-cover"
             style={{ imageRendering: '-webkit-optimize-contrast' }}
-            onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
         </div>

@@ -2,7 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { getCloudinaryUrl, FALLBACK_IMAGE } from '../lib/cloudinary';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,15 +28,11 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <motion.img
-              src={getCloudinaryUrl('/logo.png')}
+              src="/logo.png"
               alt="Greenlife Pharmaceuticals"
               className="h-12 w-auto object-contain"
               whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 400 }}
-              onError={(e) => {
-                e.target.src = FALLBACK_IMAGE;
-                e.target.onerror = null; // Prevent infinite loop
-              }}
             />
           </Link>
 

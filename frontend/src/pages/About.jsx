@@ -3,7 +3,6 @@ import { Eye, Target, Heart, Award, Lightbulb, Users, Cpu, Shield } from 'lucide
 import Section from '../components/Section';
 import Footer from '../components/Footer';
 import { getLifestyleImages } from '../utils/products';
-import { getCloudinaryUrl, FALLBACK_IMAGE } from '../lib/cloudinary';
 
 const About = () => {
   const lifestyleImages = getLifestyleImages();
@@ -68,32 +67,32 @@ const About = () => {
     {
       name: 'Dr. Obiora Anthony Chukwuka',
       role: 'Chief Executive Officer',
-      image: getCloudinaryUrl('/leader.jpeg'),
+      image: '/leader.jpeg',
     },
     {
       name: 'Mr. Ebere Nwosu',
       role: 'Chief Operating Officer',
-      image: getCloudinaryUrl('/leader.jpeg'),
+      image: '/leader.jpeg',
     },
     {
       name: 'Dr. Amina Mohammed',
       role: 'Chief Medical Officer',
-      image: getCloudinaryUrl('/leader.jpeg'),
+      image: '/leader.jpeg',
     },
     {
       name: 'Mr. Tunde Adebayo',
       role: 'Head of Quality Assurance',
-      image: getCloudinaryUrl('/leader.jpeg'),
+      image: '/leader.jpeg',
     },
     {
       name: 'Mrs. Chioma Okonkwo',
       role: 'Director of Operations',
-      image: getCloudinaryUrl('/leader.jpeg'),
+      image: '/leader.jpeg',
     },
     {
       name: 'Dr. Ibrahim Musa',
       role: 'Head of Research & Development',
-      image: getCloudinaryUrl('/leader.jpeg'),
+      image: '/leader.jpeg',
     },
   ];
 
@@ -127,7 +126,6 @@ const About = () => {
               <div className="aspect-[4/3] rounded-2xl overflow-hidden diffused-shadow-lg">
                 <img
                   src={lifestyleImages[2]}
-                  onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                   alt="Pharmaceutical Professional"
                   className="w-full h-full object-cover"
                   style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -225,8 +223,7 @@ const About = () => {
               <div className="col-span-8 lg:col-span-4">
                 <div className="aspect-video rounded-2xl overflow-hidden relative" style={{ boxShadow: '0 0 40px rgba(5, 150, 105, 0.3)' }}>
                   <img
-                    src={getCloudinaryUrl('/mas.jpg')}
-                    onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
+                    src="/mas.jpg"
                     alt="MAS Technology Innovation"
                     className="w-full h-full object-cover"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -314,7 +311,6 @@ const About = () => {
                   <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-[#059669]/20 shadow-lg">
                     <img
                       src={leader.image}
-                      onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                       alt={leader.name}
                       className="w-full h-full object-cover"
                       style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -394,8 +390,7 @@ const About = () => {
               <div className="col-span-8 lg:col-span-4 order-2 lg:order-1">
                 <div className="aspect-video rounded-3xl overflow-hidden shadow-lg">
                   <img
-                    src={getCloudinaryUrl('/anti.jpg')}
-                    onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
+                    src="/anti.jpg"
                     alt="Anti-Counterfeiting Innovation"
                     className="w-full h-full object-cover"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}

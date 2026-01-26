@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
-import { getCloudinaryUrl, FALLBACK_IMAGE } from '../lib/cloudinary';
 
 const Footer = () => {
   const googleMapsSearchUrl = 'https://www.google.com/maps/search/?api=1&query=Ilupeju+Industrial+Estate+Lagos+Nigeria';
@@ -167,11 +166,10 @@ const Footer = () => {
             <div>
               <Link to="/">
                 <img
-                  src={getCloudinaryUrl('/GreenLife-logo-black (1).png')}
+                  src="/GreenLife-logo-black (1).png"
                   alt="Greenlife Pharmaceuticals"
                   className="h-12 w-auto object-contain mb-4 brightness-0 invert hover:opacity-80 transition-opacity"
                   style={{ imageRendering: '-webkit-optimize-contrast' }}
-                  onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                 />
               </Link>
               <p className="text-slate-400 text-sm leading-relaxed">

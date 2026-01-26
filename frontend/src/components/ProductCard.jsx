@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
     >
       <div className="aspect-square overflow-hidden bg-[#F8FAFC]">
         <img
-          src={product.imageUrl || 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&h=800&fit=crop'}
+          src={product.imageUrl || product.primaryImage || '/placeholder.jpg'}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           style={{ imageRendering: '-webkit-optimize-contrast' }}

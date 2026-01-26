@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Calendar, ArrowRight, Download, ExternalLink } from 'lucide-react';
 import Section from '../components/Section';
 import Footer from '../components/Footer';
-import { getCloudinaryUrl, FALLBACK_IMAGE } from '../lib/cloudinary';
 
 const Insights = () => {
   const [posts, setPosts] = useState([]);
@@ -14,7 +13,7 @@ const Insights = () => {
       _id: '1',
       title: 'Sun Business Man of the Year: Dr. Obiora Chukwuka',
       excerpt: 'Greenlife\'s Chairman receives the prestigious Sun Business Man of the Year award, recognizing over 27 years of pioneering leadership in the West African pharmaceutical landscape and a commitment to quality healthcare.',
-      imageUrl: getCloudinaryUrl('/portrait-man-working-as-chemist.jpg'),
+      imageUrl: '/portrait-man-working-as-chemist.jpg',
       createdAt: '2024-07-20',
       category: 'Corporate',
       source: 'Sun News',
@@ -24,7 +23,7 @@ const Insights = () => {
       _id: '2',
       title: 'Greenlife Deploys MAS Technology to Curb Fake Drugs',
       excerpt: 'Greenlife Pharmaceuticals becomes a frontrunner in patient safety by deploying Mobile Authentication Service (MAS) technology, enabling real-time verification of brands like Lonart through NAFDAC-approved SMS systems.',
-      imageUrl: getCloudinaryUrl('/mas.jpg'),
+      imageUrl: '/mas.jpg',
       createdAt: '2024-06-10',
       category: 'Innovation',
       source: 'Vanguard',
@@ -34,7 +33,7 @@ const Insights = () => {
       _id: '3',
       title: 'Greenlife Boss Calls for Stringent Measures Against Substandard Medicines',
       excerpt: 'Strategic partnership with NAFDAC to secure the Nigerian pharmaceutical supply chain. Dr. Obiora emphasizes the need for punitive measures to protect the integrity of life-saving medications.',
-      imageUrl: getCloudinaryUrl('/portrait-woman-working-pharmaceutical-industry (3).jpg'),
+      imageUrl: '/portrait-woman-working-pharmaceutical-industry (3).jpg',
       createdAt: '2024-05-15',
       category: 'Partnership',
       source: 'ThisDay',
@@ -44,7 +43,7 @@ const Insights = () => {
       _id: '4',
       title: 'The Compelling Narrative of Greenlife\'s Success',
       excerpt: 'Exploring the 27-year journey of Greenlife Pharmaceuticals from its humble beginnings to becoming a dominant force in the African pharmaceutical industry, driven by vision and quality.',
-      imageUrl: getCloudinaryUrl('/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg'),
+      imageUrl: '/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg',
       createdAt: '2024-04-10',
       category: 'Corporate',
       source: 'BusinessDay',
@@ -121,7 +120,6 @@ const Insights = () => {
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     style={{ minHeight: '200px' }}
-                    onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                   />
                   <div className="absolute top-6 left-6">
                     <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md text-[#059669] rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">

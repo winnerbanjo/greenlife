@@ -1,6 +1,6 @@
 // Product categorization utility
 // Groups product images by product name
-import { getCloudinaryUrl } from '../lib/cloudinary';
+// All images are served from the public folder - use raw paths starting with /
 
 export const getProductGroups = () => {
   // Extract unique product names from filenames
@@ -145,16 +145,16 @@ export const getProductGroups = () => {
   
   return productImages.map(product => ({
     ...product,
-    images: product.images.map(img => getCloudinaryUrl(`/${img}`)),
-    primaryImage: getCloudinaryUrl(`/${product.images[0]}`),
-    logo: product.logo ? getCloudinaryUrl(product.logo) : null,
+    images: product.images.map(img => `/${img}`),
+    primaryImage: `/${product.images[0]}`,
+    logo: product.logo || null,
   }));
 };
 
 export const getLifestyleImages = () => {
   return [
-    getCloudinaryUrl('/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg'),
-    getCloudinaryUrl('/portrait-man-working-as-chemist.jpg'),
-    getCloudinaryUrl('/portrait-woman-working-pharmaceutical-industry (3).jpg'),
+    '/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg',
+    '/portrait-man-working-as-chemist.jpg',
+    '/portrait-woman-working-pharmaceutical-industry (3).jpg',
   ];
 };

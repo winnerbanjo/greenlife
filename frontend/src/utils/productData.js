@@ -1,12 +1,6 @@
 // Comprehensive Product Data with Clinical Information
 // Based on pharmaceutical standards and regulatory information
-import { getCloudinaryUrl } from '../lib/cloudinary';
-
-// Helper function to transform image paths to Cloudinary URLs
-const transformImagePath = (path) => {
-  if (!path) return null;
-  return getCloudinaryUrl(path);
-};
+// All images are served from the public folder - use raw paths starting with /
 
 const productDataRaw = {
   'Lonart': {
@@ -188,24 +182,8 @@ const productDataRaw = {
   },
 };
 
-// Transform productDataRaw to use Cloudinary URLs
-const transformProductData = (rawData) => {
-  const transformed = {};
-  Object.keys(rawData).forEach(key => {
-    const product = rawData[key];
-    transformed[key] = {
-      ...product,
-      variants: product.variants.map(variant => ({
-        ...variant,
-        image: transformImagePath(variant.image),
-      })),
-      logo: transformImagePath(product.logo),
-    };
-  });
-  return transformed;
-};
-
-export const productData = transformProductData(productDataRaw);
+// Use productDataRaw directly - all paths are already correct local paths
+export const productData = productDataRaw;
 
 export const getProductByName = (name) => {
   return productData[name] || null;

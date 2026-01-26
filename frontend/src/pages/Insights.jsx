@@ -70,15 +70,12 @@ const Insights = () => {
   return (
     <div className="pt-28 bg-[#f8fafc]">
       {/* Hero Header with Background */}
-      <div className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={encodeURI('/portrait-woman-working-pharmaceutical-industry (3).jpg')}
-            alt="Insights Background"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50"></div>
-        </div>
+      <div 
+        className="relative pt-32 pb-20 overflow-hidden bg-cover bg-center"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/portrait-man-working-as-chemist.jpg')})`
+        }}
+      >
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <motion.div

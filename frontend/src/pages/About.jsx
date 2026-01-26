@@ -105,7 +105,7 @@ const About = () => {
           backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/portrait-man-working-as-chemist.jpg')})`
         }}
       >
-        <div className="relative max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ const About = () => {
       
       {/* Intro Section */}
       <Section>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid-8 items-center gap-12 mb-11">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -159,7 +159,7 @@ const About = () => {
       
       {/* Core Values - Glass Tile Layout */}
       <Section bgSlate>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -200,7 +200,7 @@ const About = () => {
 
       {/* MAS Technology Leadership - Tech Feature Block */}
       <Section>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -259,7 +259,7 @@ const About = () => {
 
       {/* Timeline */}
       <Section bgSlate>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -305,7 +305,7 @@ const About = () => {
 
       {/* Leadership Gallery */}
       <Section>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

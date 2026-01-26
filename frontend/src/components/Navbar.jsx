@@ -40,7 +40,7 @@ const Navbar = () => {
     },
     {
       name: 'Our Products',
-      path: '/products',
+      path: '/catalogue',
       megaMenu: [
         { name: 'Anti-Malarials', path: '/catalogue?category=Anti-Malarials', icon: Pill },
         { name: 'Antibiotics', path: '/catalogue?category=Antibiotics', icon: Stethoscope },

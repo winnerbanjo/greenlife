@@ -13,7 +13,7 @@ const Insights = () => {
       _id: '1',
       title: 'Sun Business Man of the Year: Dr. Obiora Chukwuka',
       excerpt: 'Greenlife\'s Chairman receives the prestigious Sun Business Man of the Year award, recognizing over 27 years of pioneering leadership in the West African pharmaceutical landscape and a commitment to quality healthcare.',
-      imageUrl: '/portrait-man-working-as-chemist Small.jpeg',
+      imageUrl: 'https://images.unsplash.com/photo-1576091160550-2173dad9946f?auto=format&fit=crop&w=800&q=80',
       createdAt: '2024-07-20',
       category: 'Corporate',
       source: 'Sun News',
@@ -23,7 +23,7 @@ const Insights = () => {
       _id: '2',
       title: 'Greenlife Deploys MAS Technology to Curb Fake Drugs',
       excerpt: 'Greenlife Pharmaceuticals becomes a frontrunner in patient safety by deploying Mobile Authentication Service (MAS) technology, enabling real-time verification of brands like Lonart through NAFDAC-approved SMS systems.',
-      imageUrl: '/mas Small.jpeg',
+      imageUrl: 'https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?auto=format&fit=crop&w=800&q=80',
       createdAt: '2024-06-10',
       category: 'Innovation',
       source: 'Vanguard',
@@ -33,7 +33,7 @@ const Insights = () => {
       _id: '3',
       title: 'Greenlife Boss Calls for Stringent Measures Against Substandard Medicines',
       excerpt: 'Strategic partnership with NAFDAC to secure the Nigerian pharmaceutical supply chain. Dr. Obiora emphasizes the need for punitive measures to protect the integrity of life-saving medications.',
-      imageUrl: '/portrait-woman-working-pharmaceutical-industry (3) Small.jpeg',
+      imageUrl: 'https://plus.unsplash.com/premium_photo-1664475450083-5c9eef17a351?auto=format&fit=crop&w=800&q=80',
       createdAt: '2024-05-15',
       category: 'Partnership',
       source: 'ThisDay',
@@ -76,7 +76,7 @@ const Insights = () => {
           backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/portrait-man-working-as-chemist.jpg')})`
         }}
       >
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <motion.div
               initial={{ opacity: 0, x: -20 }}

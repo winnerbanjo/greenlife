@@ -12,19 +12,19 @@ const CSR = () => {
       icon: BookOpen,
       title: 'Community Health Outreach',
       description: 'Recent public health campaigns in Ilupeju and Oshodi providing free health screenings and drug administration. Our team of medical professionals conducts regular health education programs across rural and urban communities, focusing on malaria prevention, proper medication use, and general health awareness. Thousands of people benefit annually from these initiatives.',
-      image: lifestyleImages[0] || '/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg',
+      image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?auto=format&fit=crop&w=800&q=80',
     },
     {
       icon: Target,
       title: 'Malaria-Free Initiative',
       description: 'Our long-term commitment to providing affordable ACT-based antimalarials (Lonart, P-Alaxin) in line with WHO standards. Through strategic partnerships with healthcare institutions and NGOs, we distribute anti-malarial medications and provide comprehensive support for malaria prevention initiatives across West Africa. Our Lonart brand has been instrumental in treating over 2 million malaria cases.',
-      image: lifestyleImages[1] || '/portrait-man-working-as-chemist.jpg',
+      image: 'https://images.unsplash.com/photo-1576091160550-2173dad9946f?auto=format&fit=crop&w=800&q=80',
     },
     {
       icon: GraduationCap,
       title: 'Scholarships for Pharmacy Students',
       description: 'We invest in the future of healthcare by providing scholarships to outstanding pharmacy students across Nigerian universities. Our scholarship program has supported over 150 students in the past 5 years, ensuring a pipeline of qualified pharmaceutical professionals.',
-      image: lifestyleImages[2] || '/portrait-woman-working-pharmaceutical-industry (3).jpg',
+      image: 'https://plus.unsplash.com/premium_photo-1664475450083-5c9eef17a351?auto=format&fit=crop&w=800&q=80',
     },
   ];
 
@@ -44,7 +44,7 @@ const CSR = () => {
           backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/portrait-man-working-as-chemist.jpg')})`
         }}
       >
-        <div className="relative max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ const CSR = () => {
 
       {/* Stats Bar */}
       <div className="bg-[#059669] text-white py-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
@@ -90,7 +90,7 @@ const CSR = () => {
 
       {/* Programs Section */}
       <Section>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +152,7 @@ const CSR = () => {
 
       {/* Call to Action */}
       <div className="bg-slate-50 py-21">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -145,9 +145,9 @@ export const getProductGroups = () => {
   
   return productImages.map(product => ({
     ...product,
-    images: product.images.map(img => encodeURI(`/${img}`)),
-    primaryImage: encodeURI(`/${product.images[0]}`),
-    logo: product.logo ? encodeURI(product.logo) : null,
+    images: product.images.map(img => `/${img}`),
+    primaryImage: `/${product.images[0]}`,
+    logo: product.logo || null,
   }));
 };
 

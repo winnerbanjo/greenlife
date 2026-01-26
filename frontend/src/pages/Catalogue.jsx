@@ -101,11 +101,11 @@ const Catalogue = () => {
                     whileHover={{ y: -8 }}
                     className="glass-card rounded-xl overflow-hidden cursor-pointer group"
                   >
-                <div className="aspect-square bg-[#F8FAFC] overflow-hidden">
+                <div className="aspect-square bg-white overflow-hidden flex items-center justify-center p-6">
                   <img
                     src={encodeURI(product.primaryImage)}
                     alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}
                   />
                 </div>

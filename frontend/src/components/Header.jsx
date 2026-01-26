@@ -28,7 +28,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <motion.img
-              src="/logo.png"
+              src="/GreenLife-logo-black (1).png"
               alt="Greenlife Pharmaceuticals"
               className="h-12 w-auto object-contain"
               whileHover={{ scale: 1.05 }}

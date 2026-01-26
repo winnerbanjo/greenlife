@@ -86,55 +86,50 @@ const Home = () => {
 
   return (
     <div className="pt-28">
-      {/* Hero Section - White with Real Lifestyle Image */}
-      <Section>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid-8 items-center gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="col-span-8 lg:col-span-4"
-            >
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter text-slate-900 mb-6 leading-tight">
-                Empowering Health & Enriching Lives Since 1995
-              </h1>
-              <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-                Trusted pharmaceutical partner delivering quality healthcare solutions
-                across Nigeria and West Africa. Over 5 million people served.
-              </p>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link
-                  to="/catalogue"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#059669] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-emerald-600 transition-colors"
-                >
-                  Explore Products
-                  <ArrowRight size={20} />
-                </Link>
-              </motion.div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="col-span-8 lg:col-span-4 relative"
-            >
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden diffused-shadow-lg">
-                <img
-                  src={lifestyleImages[0]}
-                  alt="Professional Pharmacist"
-                  className="w-full h-full object-cover"
-                  style={{ imageRendering: '-webkit-optimize-contrast' }}
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none rounded-2xl"></div>
-            </motion.div>
-          </div>
+      {/* Hero Section - Full-Width Background with Overlay */}
+      <div className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg"
+            alt="Professional Pharmacist"
+            className="w-full h-full object-cover object-center"
+            style={{ imageRendering: '-webkit-optimize-contrast' }}
+          />
+          {/* Dark Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
         </div>
-      </Section>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl"
+          >
+            <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter text-white mb-6 leading-tight drop-shadow-lg">
+              Empowering Health & Enriching Lives Since 1995
+            </h1>
+            <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed drop-shadow-md">
+              Trusted pharmaceutical partner delivering quality healthcare solutions
+              across Nigeria and West Africa. Over 5 million people served.
+            </p>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                to="/catalogue"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#059669] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-[#047857] transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Explore Products
+                <ArrowRight size={20} />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
 
       {/* At a Glance Bar - Clickable Stats - Light Medical Grey with Borders */}
       <div className="bg-slate-50 border-y border-slate-200 py-12">

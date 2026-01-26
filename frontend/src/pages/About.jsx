@@ -124,12 +124,12 @@ const About = () => {
               className="col-span-8 lg:col-span-4"
             >
               <div className="aspect-[4/3] rounded-2xl overflow-hidden diffused-shadow-lg">
-                <img
-                  src={lifestyleImages[2]}
-                  alt="Pharmaceutical Professional"
-                  className="w-full h-full object-cover"
-                  style={{ imageRendering: '-webkit-optimize-contrast' }}
-                />
+                  <img
+                    src={encodeURI(lifestyleImages[2])}
+                    alt="Pharmaceutical Professional"
+                    className="w-full h-full object-cover"
+                    style={{ imageRendering: '-webkit-optimize-contrast' }}
+                  />
               </div>
             </motion.div>
           </div>
@@ -223,7 +223,7 @@ const About = () => {
               <div className="col-span-8 lg:col-span-4">
                 <div className="aspect-video rounded-2xl overflow-hidden relative" style={{ boxShadow: '0 0 40px rgba(5, 150, 105, 0.3)' }}>
                   <img
-                    src="/mas Small.jpeg"
+                    src={encodeURI('/mas Small.jpeg')}
                     alt="MAS Technology Innovation"
                     className="w-full h-full object-cover"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -310,7 +310,7 @@ const About = () => {
                 <div className="relative mb-4">
                   <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-[#059669]/20 shadow-lg">
                     <img
-                      src={leader.image}
+                      src={encodeURI(leader.image)}
                       alt={leader.name}
                       className="w-full h-full object-cover"
                       style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -390,7 +390,7 @@ const About = () => {
               <div className="col-span-8 lg:col-span-4 order-2 lg:order-1">
                 <div className="aspect-video rounded-3xl overflow-hidden shadow-lg">
                   <img
-                    src="/mas Small.jpeg"
+                    src={encodeURI('/mas Small.jpeg')}
                     alt="Anti-Counterfeiting Innovation"
                     className="w-full h-full object-cover"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}

@@ -32,13 +32,13 @@ const Home = () => {
   };
 
   const productLogos = [
-    { logo: '/Group-2087326717.svg', category: 'Anti-Malarials', product: 'Lonart' },
-    { logo: '/Group-2087326718.svg', category: 'Anti-Malarials', product: 'P-alaxin' },
-    { logo: '/AMOXICLIQ.svg', category: 'Antibiotics', product: 'Amoxicliq' },
-    { logo: '/Manix-1-1.svg', category: 'Pain Management', product: 'Manix' },
-    { logo: '/Group-1000010927.svg', category: 'Antibiotics', product: 'G-clav' },
-    { logo: '/Group-2087326719.svg', category: 'Pain Management', product: null },
-    { logo: '/Group-2087326720.svg', category: 'Anti-Malarials', product: null },
+    { logo: encodeURI('/Group-2087326717.svg'), category: 'Anti-Malarials', product: 'Lonart' },
+    { logo: encodeURI('/Group-2087326718.svg'), category: 'Anti-Malarials', product: 'P-alaxin' },
+    { logo: encodeURI('/AMOXICLIQ.svg'), category: 'Antibiotics', product: 'Amoxicliq' },
+    { logo: encodeURI('/Manix-1-1.svg'), category: 'Pain Management', product: 'Manix' },
+    { logo: encodeURI('/Group-1000010927.svg'), category: 'Antibiotics', product: 'G-clav' },
+    { logo: encodeURI('/Group-2087326719.svg'), category: 'Pain Management', product: null },
+    { logo: encodeURI('/Group-2087326720.svg'), category: 'Anti-Malarials', product: null },
   ];
 
   const categoryIcons = {
@@ -91,7 +91,7 @@ const Home = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg"
+            src={encodeURI('/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg')}
             alt="Professional Pharmacist"
             className="w-full h-full object-cover object-center"
             style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -241,7 +241,7 @@ const Home = () => {
                 >
                   <img
                     src={item.logo}
-                    alt="Product Logo"
+                    alt={`${item.product || item.category} Logo`}
                     className="max-h-20 max-w-20 object-contain group-hover:scale-110 transition-transform duration-500"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}
                   />
@@ -303,7 +303,7 @@ const Home = () => {
       <div className="relative py-30 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={lifestyleImages[1]}
+            src={encodeURI(lifestyleImages[1])}
             alt="27 Years of Excellence"
             className="w-full h-full object-cover"
             style={{ imageRendering: '-webkit-optimize-contrast' }}

@@ -116,7 +116,7 @@ const Insights = () => {
                 {/* Image Container */}
                 <div className={`${index === 0 ? 'md:w-1/2 h-full' : 'aspect-video'} overflow-hidden relative`}>
                   <img
-                    src={post.imageUrl}
+                    src={encodeURI(post.imageUrl)}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     style={{ minHeight: '200px' }}

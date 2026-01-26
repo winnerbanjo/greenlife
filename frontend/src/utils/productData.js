@@ -9,6 +9,12 @@ const productDataRaw = {
     description: 'Artemether + Lumefantrine combination therapy for the treatment of uncomplicated malaria',
     variants: [
       {
+        name: 'Lonart (1 x 12)',
+        strength: '20mg Artemether + 120mg Lumefantrine',
+        packSize: '12 Tablets',
+        image: '/Lonart 1 x 12 (1).jpg',
+      },
+      {
         name: 'Lonart DS (80/480mg)',
         strength: '80mg Artemether + 480mg Lumefantrine',
         packSize: '6 Tablets',

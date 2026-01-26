@@ -56,7 +56,7 @@ const ProductDetails = () => {
                 {product.logo && (
                   <div className="mb-6">
                     <img
-                      src={product.logo}
+                      src={encodeURI(product.logo)}
                       alt={product.name}
                       className="h-24 w-auto object-contain"
                       style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -77,7 +77,7 @@ const ProductDetails = () => {
                 {product.variants[0]?.image && (
                   <div className="aspect-square rounded-2xl overflow-hidden diffused-shadow-lg bg-[#F8FAFC] flex items-center justify-center p-12">
                     <img
-                      src={product.variants[0].image}
+                      src={encodeURI(product.variants[0].image)}
                       alt={product.name}
                       className="max-w-full max-h-full object-contain"
                       style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -106,7 +106,7 @@ const ProductDetails = () => {
                   {variant.image && (
                     <div className="aspect-square bg-[#F8FAFC] rounded-lg overflow-hidden mb-4 flex items-center justify-center p-4">
                       <img
-                        src={variant.image}
+                        src={encodeURI(variant.image)}
                         alt={variant.name}
                         className="max-w-full max-h-full object-contain"
                         style={{ imageRendering: '-webkit-optimize-contrast' }}

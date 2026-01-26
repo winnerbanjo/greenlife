@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
     >
       <div className="aspect-square overflow-hidden bg-[#F8FAFC]">
         <img
-          src={product.imageUrl || product.primaryImage || '/placeholder.jpg'}
+          src={encodeURI(product.imageUrl || product.primaryImage || '/placeholder.jpg')}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           style={{ imageRendering: '-webkit-optimize-contrast' }}

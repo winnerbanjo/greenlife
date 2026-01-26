@@ -8,8 +8,8 @@ export const getProductGroups = () => {
   
   // Product images from /public folder
   const productImages = [
-    // Lonart products
-    { name: 'Lonart', images: ['lonart (1).jpg', 'lonart (2).jpg', 'lonart (3).jpg', 'lonart (4).jpg', 'Lonart 1 x 12 (1).jpg', 'Lonart 1 x 12 (2).jpg', 'Lonart 1 x 12 (3).jpg', 'Lonart 1 x 12 (4).jpg', 'Lonart ds (1).jpg', 'Lonart ds (2).jpg', 'Lonart ds (3).jpg', 'Lonart ds (4).jpg'], category: 'Anti-Malarials', logo: '/Group-2087326717.svg' },
+    // Lonart products - Hero shot: Lonart 1 x 12 (1).jpg
+    { name: 'Lonart', images: ['Lonart 1 x 12 (1).jpg', 'Lonart 1 x 12 (2).jpg', 'Lonart 1 x 12 (3).jpg', 'Lonart 1 x 12 (4).jpg', 'lonart (1).jpg', 'lonart (2).jpg', 'lonart (3).jpg', 'lonart (4).jpg', 'Lonart ds (1).jpg', 'Lonart ds (2).jpg', 'Lonart ds (3).jpg', 'Lonart ds (4).jpg'], category: 'Anti-Malarials', logo: '/Group-2087326717.svg' },
     
     // Manix products
     { name: 'Manix', images: ['Manix capsule (1).jpg', 'Manix capsule (2).jpg'], category: 'Pain Management', logo: '/Manix-1-1.svg' },
@@ -17,11 +17,11 @@ export const getProductGroups = () => {
     // Amoxicliq products
     { name: 'Amoxicliq', images: ['AMOXICLIQ.svg'], category: 'Antibiotics', logo: '/AMOXICLIQ.svg' },
     
-    // P-alaxin products
-    { name: 'P-alaxin', images: ['P-alaxin 1 x 9 (1).jpg', 'P-alaxin 1 x 9 (2).jpg', 'P-alaxin 1 x 9 (3).jpg', 'P-alaxin 1 x 9 (4).jpg', 'P-alaxin 1 x12 (1).jpg', 'P-alaxin 1 x12 (2).jpg', 'P-alaxin 1 x12 (3).jpg', 'P-alaxin 1 x12 (4).jpg', 'P-alaxin 1 x12 (5).jpg', 'P-alaxin 1 x12 (6).jpg', 'P-alaxin 1 x12 (7).jpg', 'P-alaxin 1 x12 (8).jpg'], category: 'Anti-Malarials', logo: '/Group-2087326718.svg' },
+    // P-alaxin products - Hero shot: P-alaxin 1 x12 (1).jpg
+    { name: 'P-alaxin', images: ['P-alaxin 1 x12 (1).jpg', 'P-alaxin 1 x12 (2).jpg', 'P-alaxin 1 x12 (3).jpg', 'P-alaxin 1 x12 (4).jpg', 'P-alaxin 1 x12 (5).jpg', 'P-alaxin 1 x12 (6).jpg', 'P-alaxin 1 x12 (7).jpg', 'P-alaxin 1 x12 (8).jpg', 'P-alaxin 1 x 9 (1).jpg', 'P-alaxin 1 x 9 (2).jpg', 'P-alaxin 1 x 9 (3).jpg', 'P-alaxin 1 x 9 (4).jpg'], category: 'Anti-Malarials', logo: '/Group-2087326718.svg' },
     
-    // G-clav products
-    { name: 'G-clav', images: ['G-clav (1).jpg', 'G-clav (2).jpg', 'G-clav (3).jpg', 'G-clav (4).jpg', 'G-clav 625 (1).jpg', 'G-clav 625 (2).jpg', 'G-clav 625 (3).jpg'], category: 'Antibiotics', logo: '/Group-1000010927.svg' },
+    // G-clav products - Hero shot: G-clav 625 (1).jpg
+    { name: 'G-clav', images: ['G-clav 625 (1).jpg', 'G-clav 625 (2).jpg', 'G-clav 625 (3).jpg', 'G-clav (1).jpg', 'G-clav (2).jpg', 'G-clav (3).jpg', 'G-clav (4).jpg'], category: 'Antibiotics', logo: '/Group-1000010927.svg' },
     
     // Lofnac products
     { name: 'Lofnac', images: ['Lofnac 100 (1).jpg', 'Lofnac 100 (2).jpg', 'Lofnac 100 (3).jpg', 'Lofnac 100 (4).jpg', 'Lofnac 100 (5).jpg', 'Lofnac gel (1).jpg', 'Lofnac gel (2).jpg', 'Lofnac gel (3).jpg', 'Lofnac gel (4).jpg', 'Lofnac gel (5).jpg', 'Lofnac gel (14).jpg', 'Lofnac roll on (1).jpg', 'Lofnac roll on (2).jpg', 'Lofnac roll on (3).jpg', 'Lofnac roll on (4).jpg', 'Lofnac roll on (5).jpg', 'Lofnac roll on (6).jpg'], category: 'Pain Management', logo: '/Group-2087326719.svg' },
@@ -145,9 +145,9 @@ export const getProductGroups = () => {
   
   return productImages.map(product => ({
     ...product,
-    images: product.images.map(img => `/${img}`),
-    primaryImage: `/${product.images[0]}`,
-    logo: product.logo || null,
+    images: product.images.map(img => encodeURI(`/${img}`)),
+    primaryImage: encodeURI(`/${product.images[0]}`),
+    logo: product.logo ? encodeURI(product.logo) : null,
   }));
 };
 

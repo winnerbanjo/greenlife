@@ -166,7 +166,7 @@ const Footer = () => {
             <div>
               <Link to="/">
                 <img
-                  src="/GreenLife-logo-black (1).png"
+                  src={encodeURI('/GreenLife-logo-black (1).png')}
                   alt="Greenlife Pharmaceuticals"
                   className="h-12 w-auto object-contain mb-4 brightness-0 invert hover:opacity-80 transition-opacity"
                   style={{ imageRendering: '-webkit-optimize-contrast' }}

@@ -67,32 +67,32 @@ const About = () => {
     {
       name: 'Dr. Obiora Anthony Chukwuka',
       role: 'Chief Executive Officer',
-      image: '/leader.jpeg',
+      image: '/leader Small.jpeg',
     },
     {
       name: 'Mr. Ebere Nwosu',
       role: 'Chief Operating Officer',
-      image: '/leader.jpeg',
+      image: '/leader Small.jpeg',
     },
     {
       name: 'Dr. Amina Mohammed',
       role: 'Chief Medical Officer',
-      image: '/leader.jpeg',
+      image: '/leader Small.jpeg',
     },
     {
       name: 'Mr. Tunde Adebayo',
       role: 'Head of Quality Assurance',
-      image: '/leader.jpeg',
+      image: '/leader Small.jpeg',
     },
     {
       name: 'Mrs. Chioma Okonkwo',
       role: 'Director of Operations',
-      image: '/leader.jpeg',
+      image: '/leader Small.jpeg',
     },
     {
       name: 'Dr. Ibrahim Musa',
       role: 'Head of Research & Development',
-      image: '/leader.jpeg',
+      image: '/leader Small.jpeg',
     },
   ];
 
@@ -223,7 +223,7 @@ const About = () => {
               <div className="col-span-8 lg:col-span-4">
                 <div className="aspect-video rounded-2xl overflow-hidden relative" style={{ boxShadow: '0 0 40px rgba(5, 150, 105, 0.3)' }}>
                   <img
-                    src="/mas.jpg"
+                    src="/mas Small.jpeg"
                     alt="MAS Technology Innovation"
                     className="w-full h-full object-cover"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -390,7 +390,7 @@ const About = () => {
               <div className="col-span-8 lg:col-span-4 order-2 lg:order-1">
                 <div className="aspect-video rounded-3xl overflow-hidden shadow-lg">
                   <img
-                    src="/anti.jpg"
+                    src="/mas Small.jpeg"
                     alt="Anti-Counterfeiting Innovation"
                     className="w-full h-full object-cover"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}

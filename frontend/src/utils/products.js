@@ -153,8 +153,8 @@ export const getProductGroups = () => {
 
 export const getLifestyleImages = () => {
   return [
-    '/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg',
-    '/portrait-man-working-as-chemist.jpg',
-    '/portrait-woman-working-pharmaceutical-industry (3).jpg',
+    '/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1) Small.jpeg',
+    '/portrait-man-working-as-chemist Small.jpeg',
+    '/portrait-woman-working-pharmaceutical-industry (3) Small.jpeg',
   ];
 };

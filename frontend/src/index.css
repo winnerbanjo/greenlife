@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-slate-200;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-slate-900 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tighter;
+  }
+  
+  img {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.08)];
+  }
+  
+  .glass-navbar {
+    @apply bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-[0_4px_24px_0_rgba(0,0,0,0.06)];
+  }
+  
+  .section-padding {
+    @apply py-30;
+  }
+  
+  .grid-8 {
+    @apply grid grid-cols-8 gap-6;
+  }
+  
+  .diffused-shadow {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+  }
+  
+  .diffused-shadow-lg {
+    box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.12);
+  }
+}

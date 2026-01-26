@@ -73,10 +73,10 @@ const Insights = () => {
       <div 
         className="relative pt-32 pb-20 overflow-hidden bg-cover bg-center"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/portrait-man-working-as-chemist.jpg')})`
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=2000')`
         }}
       >
-        <div className="relative max-w-7xl mx-auto px-4">
+        <div className="relative max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -105,7 +105,7 @@ const Insights = () => {
       </div>
       
       <Section>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4">
 
           {/* Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -126,7 +126,7 @@ const Insights = () => {
                 {/* Image Container */}
                 <div className={`${index === 0 ? 'md:w-1/2 h-full' : 'aspect-video'} overflow-hidden relative`}>
                   <img
-                    src={encodeURI(post.imageUrl)}
+                    src={post.imageUrl.startsWith('http') ? post.imageUrl : encodeURI(post.imageUrl)}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     style={{ minHeight: '200px' }}

@@ -35,7 +35,7 @@ const Catalogue = () => {
   return (
     <div className="pt-28">
       <Section>
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

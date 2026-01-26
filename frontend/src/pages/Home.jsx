@@ -300,16 +300,12 @@ const Home = () => {
       <ExpertSection />
 
       {/* Authority Block - Over 5 Million People Served with Lifestyle Image */}
-      <div className="relative py-30 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={encodeURI(lifestyleImages[1])}
-            alt="27 Years of Excellence"
-            className="w-full h-full object-cover"
-            style={{ imageRendering: '-webkit-optimize-contrast' }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
-        </div>
+      <div 
+        className="relative py-30 overflow-hidden min-h-[400px] bg-cover bg-center"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${encodeURI('/portrait-man-working-as-chemist.jpg')})`
+        }}
+      >
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}

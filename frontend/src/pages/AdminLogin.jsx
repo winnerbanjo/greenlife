@@ -33,7 +33,7 @@ const AdminLogin = () => {
       {/* Pharmaceutical Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1920&h=1080&fit=crop"
+          src={encodeURI('/portrait-woman-working-pharmaceutical-industry (3).jpg')}
           alt="Pharmaceutical Background"
           className="w-full h-full object-cover"
         />

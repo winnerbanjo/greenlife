@@ -36,7 +36,7 @@
   }
   
   .section-padding {
-    @apply py-30;
+    @apply py-21;
   }
   
   .grid-8 {

@@ -162,13 +162,13 @@ const Home = () => {
 
       {/* Product Categories - Overhauled UI */}
       <Section>
-        <div className="max-w-7xl mx-auto px-6 py-20">
+        <div className="max-w-7xl mx-auto px-6 py-14">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="mb-12 flex flex-col items-center text-center"
+            className="mb-8 flex flex-col items-center text-center"
           >
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter text-slate-900 mb-4">
               Product Categories
@@ -222,7 +222,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-8"
           >
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter text-slate-900 mb-4 text-center">
               Flagship Products
@@ -240,7 +240,7 @@ const Home = () => {
                   className="glass-card rounded-xl p-6 aspect-square flex items-center justify-center cursor-pointer group grayscale hover:grayscale-0 transition-all duration-500"
                 >
                   <img
-                    src={item.logo}
+                    src={encodeURI(item.logo)}
                     alt={`${item.product || item.category} Logo`}
                     className="max-h-20 max-w-20 object-contain group-hover:scale-110 transition-transform duration-500"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -253,14 +253,14 @@ const Home = () => {
       </Section>
 
       {/* B2B Growth Hub - Emerald Green Background with White Text */}
-      <div className="bg-[#059669] text-white py-30">
+      <div className="bg-[#059669] text-white py-21">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="mb-12"
+            className="mb-8"
           >
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter text-white mb-4">
               B2B Growth Hub
@@ -301,7 +301,7 @@ const Home = () => {
 
       {/* Authority Block - Over 5 Million People Served with Lifestyle Image */}
       <div 
-        className="relative py-30 overflow-hidden min-h-[400px] bg-cover bg-center"
+        className="relative py-21 overflow-hidden min-h-[400px] bg-cover bg-center"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${encodeURI('/portrait-man-working-as-chemist.jpg')})`
         }}
@@ -343,7 +343,7 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="mb-12"
+            className="mb-8"
           >
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter text-slate-900 mb-4">
               Our Story
@@ -382,8 +382,8 @@ const Home = () => {
       </Section>
 
       {/* Global Impact - High-End Stats Section - "Total Symmetry" */}
-      <div className="bg-slate-50 py-20 md:py-32">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+      <div className="bg-slate-50 py-14 md:py-22">
+        <div className="max-w-3xl mx-auto text-center mb-11">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

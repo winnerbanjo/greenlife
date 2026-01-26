@@ -408,7 +408,7 @@ const Admin = () => {
                   {products.map((product) => (
                     <tr key={product._id} className="border-b border-slate-200 hover:bg-[#F8FAFC] transition-colors">
                       <td className="px-6 py-4">
-                        <img src={product.imageUrl || 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=100&h=100&fit=crop'} alt={product.name} className="w-16 h-16 object-cover rounded-lg" />
+                        <img src={encodeURI(product.imageUrl || '/placeholder.jpg')} alt={product.name} className="w-16 h-16 object-cover rounded-lg" />
                       </td>
                       <td className="px-6 py-4 text-slate-900 font-semibold">{product.name}</td>
                       <td className="px-6 py-4 text-[#059669] text-sm">{product.category}</td>

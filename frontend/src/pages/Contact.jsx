@@ -17,7 +17,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="mb-16"
+            className="mb-11"
           >
             <span className="text-[#059669] text-sm font-bold uppercase tracking-wider">
               Contact

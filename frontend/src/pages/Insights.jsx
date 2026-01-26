@@ -69,20 +69,28 @@ const Insights = () => {
 
   return (
     <div className="pt-28 bg-[#f8fafc]">
-      <Section>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
+      {/* Hero Header with Background */}
+      <div className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={encodeURI('/portrait-woman-working-pharmaceutical-industry (3).jpg')}
+            alt="Insights Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h4 className="text-[#059669] text-sm font-bold uppercase tracking-[0.2em] mb-4">
+              <h4 className="text-white/80 text-sm font-bold uppercase tracking-[0.2em] mb-4">
                 Greenlife Newsroom
               </h4>
-              <h1 className="text-6xl font-bold tracking-tight text-slate-900">
-                Insights & <span className="text-slate-400">Media</span>
+              <h1 className="text-6xl font-bold tracking-tight text-white">
+                Insights & <span className="text-white/70">Media</span>
               </h1>
             </motion.div>
             
@@ -92,10 +100,15 @@ const Insights = () => {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 glass-card bg-white/40 border border-slate-200 rounded-2xl font-bold text-slate-900 flex items-center gap-3 shadow-sm"
             >
-              <Download size={20} className="text-[#059669]" />
+              <Download size={20} className="text-white" />
               Download Press Kit
             </motion.a>
           </div>
+        </div>
+      </div>
+      
+      <Section>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
           {/* Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

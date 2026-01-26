@@ -152,7 +152,7 @@ const ProductManagement = () => {
                 >
                   <td className="px-6 py-4">
                     <img
-                      src={product.imageUrl}
+                      src={encodeURI(product.imageUrl || '/placeholder.jpg')}
                       alt={product.name}
                       className="w-16 h-16 object-cover rounded-lg"
                     />

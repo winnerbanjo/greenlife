@@ -6,21 +6,21 @@ const ExpertSection = () => {
     {
       name: 'Dr. Fatima Bello',
       role: 'Chief Pharmacist, Lagos State University Teaching Hospital',
-      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop',
+      image: '/portrait-man-working-as-chemist.jpg',
       quote: 'Greenlife Pharmaceuticals has consistently delivered quality products that meet international standards. Their commitment to excellence in manufacturing and distribution makes them a trusted partner in healthcare delivery.',
       affiliation: 'Lagos State University Teaching Hospital',
     },
     {
       name: 'Prof. Adebayo Ogunleye',
       role: 'WHO Technical Advisor, Malaria Control',
-      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop',
+      image: '/portrait-woman-working-pharmaceutical-industry (3).jpg',
       quote: 'The quality assurance protocols at Greenlife Pharmaceuticals align with WHO prequalification standards. Their anti-malarial products have demonstrated efficacy in clinical settings across West Africa.',
       affiliation: 'World Health Organization',
     },
     {
       name: 'Dr. Chidi Okoro',
       role: 'Medical Director, Federal Medical Centre Abuja',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+      image: '/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg',
       quote: 'As a medical practitioner, I trust Greenlife products for their consistent quality and reliable supply chain. Their pharmaceutical solutions have been instrumental in improving patient outcomes.',
       affiliation: 'Federal Medical Centre Abuja',
     },
@@ -57,7 +57,7 @@ const ExpertSection = () => {
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 rounded-full border-2 border-[#059669] overflow-hidden flex-shrink-0">
                   <img
-                    src={expert.image}
+                    src={encodeURI(expert.image)}
                     alt={expert.name}
                     className="w-full h-full object-cover"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}

@@ -98,10 +98,37 @@ const About = () => {
 
   return (
     <div className="pt-28">
-      {/* Intro Section with Lifestyle Image */}
+      {/* Hero Header with Background */}
+      <div className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={encodeURI('/portrait-man-working-as-chemist.jpg')}
+            alt="About Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl"
+          >
+            <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter text-white mb-6">
+              About Greenlife Pharmaceuticals
+            </h1>
+            <p className="text-xl text-white/90 leading-relaxed">
+              Trusted by over 5 million people across Nigeria & West Africa
+            </p>
+          </motion.div>
+        </div>
+      </div>
+      
+      {/* Intro Section */}
       <Section>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid-8 items-center gap-12 mb-16">
+          <div className="grid-8 items-center gap-12 mb-11">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -109,11 +136,8 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="col-span-8 lg:col-span-4"
             >
-              <h1 className="text-5xl lg:text-6xl font-bold tracking-tighter text-slate-900 mb-6">
-                About Greenlife Pharmaceuticals
-              </h1>
-              <p className="text-2xl text-slate-600">
-                Trusted by over 5 million people across Nigeria & West Africa
+              <p className="text-lg text-slate-600 leading-relaxed">
+                Greenlife Pharmaceuticals has been a trusted partner in healthcare delivery for over 27 years, serving millions across Nigeria and West Africa.
               </p>
             </motion.div>
             <motion.div
@@ -124,18 +148,18 @@ const About = () => {
               className="col-span-8 lg:col-span-4"
             >
               <div className="aspect-[4/3] rounded-2xl overflow-hidden diffused-shadow-lg">
-                  <img
-                    src={encodeURI(lifestyleImages[2])}
-                    alt="Pharmaceutical Professional"
-                    className="w-full h-full object-cover"
-                    style={{ imageRendering: '-webkit-optimize-contrast' }}
-                  />
+                <img
+                  src={encodeURI(lifestyleImages[2])}
+                  alt="Pharmaceutical Professional"
+                  className="w-full h-full object-cover"
+                  style={{ imageRendering: '-webkit-optimize-contrast' }}
+                />
               </div>
             </motion.div>
           </div>
         </div>
       </Section>
-
+      
       {/* Core Values - Glass Tile Layout */}
       <Section bgSlate>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -144,7 +168,7 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="mb-12"
+            className="mb-8"
           >
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter text-slate-900 mb-4">
               Our Core Values
@@ -244,7 +268,7 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="mb-12"
+            className="mb-8"
           >
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter text-slate-900 mb-4">
               Our Story
@@ -290,7 +314,7 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="mb-12"
+            className="mb-8"
           >
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter text-slate-900 mb-4">
               Leadership Team
@@ -368,7 +392,7 @@ const About = () => {
               <div className="col-span-8 lg:col-span-4">
                 <div className="aspect-video rounded-xl overflow-hidden diffused-shadow-lg">
                   <img
-                    src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&h=600&fit=crop"
+                    src={encodeURI('/portrait-woman-working-pharmaceutical-industry (3).jpg')}
                     alt="Anti-Malarial Products"
                     className="w-full h-full object-cover"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}

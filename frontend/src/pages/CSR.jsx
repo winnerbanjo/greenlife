@@ -12,19 +12,19 @@ const CSR = () => {
       icon: BookOpen,
       title: 'Community Health Outreach',
       description: 'Recent public health campaigns in Ilupeju and Oshodi providing free health screenings and drug administration. Our team of medical professionals conducts regular health education programs across rural and urban communities, focusing on malaria prevention, proper medication use, and general health awareness. Thousands of people benefit annually from these initiatives.',
-      image: lifestyleImages[0] || 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop',
+      image: lifestyleImages[0] || '/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg',
     },
     {
       icon: Target,
       title: 'Malaria-Free Initiative',
       description: 'Our long-term commitment to providing affordable ACT-based antimalarials (Lonart, P-Alaxin) in line with WHO standards. Through strategic partnerships with healthcare institutions and NGOs, we distribute anti-malarial medications and provide comprehensive support for malaria prevention initiatives across West Africa. Our Lonart brand has been instrumental in treating over 2 million malaria cases.',
-      image: lifestyleImages[1] || 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop',
+      image: lifestyleImages[1] || '/portrait-man-working-as-chemist.jpg',
     },
     {
       icon: GraduationCap,
       title: 'Scholarships for Pharmacy Students',
       description: 'We invest in the future of healthcare by providing scholarships to outstanding pharmacy students across Nigerian universities. Our scholarship program has supported over 150 students in the past 5 years, ensuring a pipeline of qualified pharmaceutical professionals.',
-      image: lifestyleImages[2] || 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop',
+      image: lifestyleImages[2] || '/portrait-woman-working-pharmaceutical-industry (3).jpg',
     },
   ];
 
@@ -41,11 +41,11 @@ const CSR = () => {
       <div className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={lifestyleImages[0] || 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1920&h=1080&fit=crop'}
+            src={encodeURI('/portrait-woman-working-pharmaceutical-industry (3).jpg')}
             alt="Community Impact"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/70 to-slate-900/60"></div>
+          <div className="absolute inset-0 bg-black/50"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
@@ -98,7 +98,7 @@ const CSR = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12 text-center"
+            className="mb-8 text-center"
           >
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter text-slate-900 mb-4">
               Our Impact Programs
@@ -125,7 +125,7 @@ const CSR = () => {
                   <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                     <div className="relative rounded-2xl overflow-hidden aspect-video">
                       <img
-                        src={program.image}
+                        src={encodeURI(program.image)}
                         alt={program.title}
                         className="w-full h-full object-cover"
                         style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -154,7 +154,7 @@ const CSR = () => {
       </Section>
 
       {/* Call to Action */}
-      <div className="bg-slate-50 py-30">
+      <div className="bg-slate-50 py-21">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -34,7 +34,7 @@ const Careers = () => {
       <div className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={lifestyleImages[1] || 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1920&h=1080&fit=crop'}
+            src={encodeURI(lifestyleImages[1] || '/portrait-man-working-as-chemist.jpg')}
             alt="Careers at Greenlife"
             className="w-full h-full object-cover"
           />
@@ -61,7 +61,7 @@ const Careers = () => {
       {/* Culture Section */}
       <Section>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-11">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -105,7 +105,7 @@ const Careers = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-8"
           >
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter text-slate-900 mb-4">
               Current Openings

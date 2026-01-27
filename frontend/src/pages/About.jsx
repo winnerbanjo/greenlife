@@ -102,7 +102,7 @@ const About = () => {
       <div 
         className="relative pt-32 pb-20 overflow-hidden bg-cover bg-center"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/about-header.png')})`
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/aboutheader.jpg')})`
         }}
       >
         <div className="relative max-w-7xl mx-auto px-4">
@@ -133,8 +133,14 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="col-span-8 lg:col-span-4"
             >
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <h2 className="text-3xl lg:text-4xl font-bold tracking-tighter text-slate-900 mb-4">
+                A Legacy of Trust & Clinical Excellence
+              </h2>
+              <p className="text-lg text-slate-600 leading-relaxed mb-4">
                 Greenlife Pharmaceuticals has been a trusted partner in healthcare delivery for over 27 years, serving millions across Nigeria and West Africa.
+              </p>
+              <p className="text-lg text-slate-600 leading-relaxed">
+                Our journey is defined by a relentless pursuit of quality, ensuring that every medication that leaves our facility contributes to a healthier, stronger West Africa.
               </p>
             </motion.div>
             <motion.div
@@ -144,9 +150,9 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="col-span-8 lg:col-span-4"
             >
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden diffused-shadow-lg">
+              <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
                 <img
-                  src={encodeURI(lifestyleImages[2])}
+                  src={encodeURI('/aboutside.png')}
                   alt="Pharmaceutical Professional"
                   className="w-full h-full object-cover"
                   style={{ imageRendering: '-webkit-optimize-contrast' }}

@@ -102,10 +102,10 @@ const About = () => {
       <div 
         className="relative pt-32 pb-20 overflow-hidden bg-cover bg-center"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000')`
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/about-header.png')})`
         }}
       >
-        <div className="relative max-w-6xl mx-auto px-4">
+        <div className="relative max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ const About = () => {
       
       {/* Intro Section */}
       <Section>
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid-8 items-center gap-12 mb-11">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -159,7 +159,7 @@ const About = () => {
       
       {/* Core Values - Glass Tile Layout */}
       <Section bgSlate>
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -200,7 +200,7 @@ const About = () => {
 
       {/* MAS Technology Leadership - Tech Feature Block */}
       <Section>
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -244,7 +244,7 @@ const About = () => {
               <div className="col-span-8 lg:col-span-4">
                 <div className="aspect-video rounded-2xl overflow-hidden relative" style={{ boxShadow: '0 0 40px rgba(5, 150, 105, 0.3)' }}>
                   <img
-                    src={encodeURI('/mas Small.jpeg')}
+                    src={encodeURI('/mas.jpg')}
                     alt="MAS Technology Innovation"
                     className="w-full h-full object-cover"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}
@@ -259,7 +259,7 @@ const About = () => {
 
       {/* Timeline */}
       <Section bgSlate>
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -305,7 +305,7 @@ const About = () => {
 
       {/* Leadership Gallery */}
       <Section>
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -411,7 +411,7 @@ const About = () => {
               <div className="col-span-8 lg:col-span-4 order-2 lg:order-1">
                 <div className="aspect-video rounded-3xl overflow-hidden shadow-lg">
                   <img
-                    src={encodeURI('/mas Small.jpeg')}
+                    src={encodeURI('/anti.jpg')}
                     alt="Anti-Counterfeiting Innovation"
                     className="w-full h-full object-cover"
                     style={{ imageRendering: '-webkit-optimize-contrast' }}

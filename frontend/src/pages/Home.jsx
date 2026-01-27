@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Shield, FileCheck, CreditCard, CheckCircle, ArrowUp, Pill, Activity, Heart, Stethoscope, Package } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Section from '../components/Section';
@@ -11,6 +11,8 @@ import { postsAPI } from '../utils/api';
 const Home = () => {
   const [insights, setInsights] = useState([]);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [animatedWord, setAnimatedWord] = useState(0);
+  const words = ['Empowering', 'Protecting', 'Sustaining', 'Advancing', 'Delivering', 'Securing', 'Healing', 'Transforming', 'Reaching', 'Enriching'];
   const lifestyleImages = getLifestyleImages();
 
   useEffect(() => {
@@ -26,6 +28,13 @@ const Home = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimatedWord((prev) => (prev + 1) % words.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [words.length]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -82,54 +91,71 @@ const Home = () => {
     { year: '2023', title: 'Health Initiatives', description: '5M+ people served milestone' },
     { year: '2026', title: 'Future Vision', description: 'Continuing healthcare excellence' },
   ];
-
-
   return (
     <div className="pt-28">
-      {/* Hero Section - Full-Width Background with Overlay */}
-      <div className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={encodeURI('/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg')}
-            alt="Professional Pharmacist"
-            className="w-full h-full object-cover object-center"
-            style={{ imageRendering: '-webkit-optimize-contrast' }}
-          />
-          {/* Dark Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
-        </div>
-        
-        {/* Content */}
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-8 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter text-white mb-6 leading-tight drop-shadow-lg">
-              Empowering Health & Enriching Lives Since 1995
-            </h1>
-            <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed drop-shadow-md">
-              Trusted pharmaceutical partner delivering quality healthcare solutions
-              across Nigeria and West Africa. Over 5 million people served.
-            </p>
+      {/* Hero Section - Split Layout */}
+      <Section>
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[600px] lg:min-h-[700px]">
+            {/* Left: Text Content */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex flex-col justify-center"
             >
-              <Link
-                to="/catalogue"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#059669] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-[#047857] transition-all duration-300 shadow-lg hover:shadow-xl"
+              <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter text-slate-900 mb-6 leading-tight">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={animatedWord}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="inline-block min-w-[200px] text-[#059669]"
+                  >
+                    {words[animatedWord]}
+                  </motion.span>
+                </AnimatePresence>
+                {' '}Health & Enriching Lives Since 1995
+              </h1>
+              <p className="text-xl lg:text-2xl text-slate-600 mb-8 leading-relaxed">
+                Trusted pharmaceutical partner delivering quality healthcare solutions
+                across Nigeria and West Africa. Over 5 million people served.
+              </p>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Explore Products
-                <ArrowRight size={20} />
-              </Link>
+                <Link
+                  to="/catalogue"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#059669] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-[#047857] transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Explore Products
+                  <ArrowRight size={20} />
+                </Link>
+              </motion.div>
             </motion.div>
-          </motion.div>
+
+            {/* Right: Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
+                <img
+                  src={encodeURI('/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1).jpg')}
+                  alt="Professional Pharmacist"
+                  className="w-full h-full object-cover"
+                  style={{ imageRendering: '-webkit-optimize-contrast' }}
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </div>
+      </Section>
 
       {/* At a Glance Bar - Clickable Stats - Light Medical Grey with Borders */}
       <div className="bg-slate-50 border-y border-slate-200 py-12">
@@ -162,7 +188,7 @@ const Home = () => {
 
       {/* Product Categories - Overhauled UI */}
       <Section>
-        <div className="max-w-6xl mx-auto px-6 py-10">
+        <div className="max-w-7xl mx-auto px-4 py-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -217,7 +243,7 @@ const Home = () => {
 
       {/* Brand Wall - Clickable Logos - Light Grey Background */}
       <Section bgSlate>
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -306,7 +332,7 @@ const Home = () => {
           backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${encodeURI('/portrait-man-working-as-chemist.jpg')})`
         }}
       >
-        <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -398,7 +424,7 @@ const Home = () => {
             </p>
           </motion.div>
         </div>
-        <div className="max-w-6xl mx-auto px-4 w-full flex justify-center">
+        <div className="max-w-7xl mx-auto px-4 w-full flex justify-center">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10 w-full items-stretch">
             {[
               { number: '27+', label: 'Years of Excellence', icon: Activity },

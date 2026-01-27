@@ -425,9 +425,9 @@ const Home = () => {
           </motion.div>
         </div>
         <div className="max-w-7xl mx-auto px-4 w-full flex justify-center">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10 w-full items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10 w-full items-stretch">
             {[
-              { number: '27+', label: 'Years of Excellence', icon: Activity },
+              { number: '11+', label: 'Distribution Depots', icon: Activity },
               { number: '300+', label: 'Staff Professionals', icon: Heart },
               { number: 'Nationwide', label: 'Coverage', icon: Package },
               { number: 'WHO-cGMP', label: 'Certified', icon: Shield },
@@ -441,13 +441,13 @@ const Home = () => {
                   viewport={{ once: true, margin: '-100px' }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  className="flex flex-col items-center justify-center text-center p-10 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all h-full"
+                  className="flex flex-col items-center justify-center text-center p-6 sm:p-10 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all h-full overflow-hidden"
                 >
-                  <div className="w-16 h-16 rounded-full bg-[#059669]/10 flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 rounded-full bg-[#059669]/10 flex items-center justify-center mx-auto mb-4 flex-shrink-0">
                     <Icon className="text-[#059669]" size={32} strokeWidth={1.5} />
                   </div>
-                  <div className="text-[#059669] text-5xl font-black tracking-tighter mb-3">{stat.number}</div>
-                  <div className="text-slate-500 text-xs font-bold uppercase tracking-[0.2em] leading-tight">{stat.label}</div>
+                  <div className="text-[#059669] text-4xl sm:text-5xl font-black tracking-tighter mb-3">{stat.number}</div>
+                  <div className="text-slate-500 text-xs font-bold uppercase tracking-[0.2em] leading-tight break-words">{stat.label}</div>
                 </motion.div>
               );
             })}

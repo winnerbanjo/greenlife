@@ -12,19 +12,19 @@ const CSR = () => {
       icon: BookOpen,
       title: 'Community Health Outreach',
       description: 'Recent public health campaigns in Ilupeju and Oshodi providing free health screenings and drug administration. Our team of medical professionals conducts regular health education programs across rural and urban communities, focusing on malaria prevention, proper medication use, and general health awareness. Thousands of people benefit annually from these initiatives.',
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dad9946f?q=80&w=2000',
+      image: '/csr/male-researcher-biotechnology-laboratory-with-tablet.jpg',
     },
     {
       icon: Target,
       title: 'Malaria-Free Initiative',
       description: 'Our long-term commitment to providing affordable ACT-based antimalarials (Lonart, P-Alaxin) in line with WHO standards. Through strategic partnerships with healthcare institutions and NGOs, we distribute anti-malarial medications and provide comprehensive support for malaria prevention initiatives across West Africa. Our Lonart brand has been instrumental in treating over 2 million malaria cases.',
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dad9946f?q=80&w=2000',
+      image: '/csr/portrait-woman-working-pharmaceutical-industry (4).jpg',
     },
     {
       icon: GraduationCap,
       title: 'Scholarships for Pharmacy Students',
       description: 'We invest in the future of healthcare by providing scholarships to outstanding pharmacy students across Nigerian universities. Our scholarship program has supported over 150 students in the past 5 years, ensuring a pipeline of qualified pharmaceutical professionals.',
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dad9946f?q=80&w=2000',
+      image: '/csr/portrait-woman-working-pharmaceutical-industry (5).jpg',
     },
   ];
 
@@ -41,7 +41,7 @@ const CSR = () => {
       <div 
         className="relative pt-32 pb-20 overflow-hidden bg-cover bg-center"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1576091160550-2173dad9946f?q=80&w=2000')`
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/csr/portrait-woman-working-pharmaceutical-industry (4).jpg')})`
         }}
       >
         <div className="relative max-w-6xl mx-auto px-4">
@@ -122,7 +122,7 @@ const CSR = () => {
                   <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                     <div className="relative rounded-2xl overflow-hidden aspect-video">
                       <img
-                        src={program.image.startsWith('http') ? program.image : encodeURI(program.image)}
+                        src={encodeURI(program.image)}
                         alt={program.title}
                         className="w-full h-full object-cover"
                         style={{ imageRendering: '-webkit-optimize-contrast' }}

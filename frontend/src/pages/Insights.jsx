@@ -13,7 +13,7 @@ const Insights = () => {
       _id: '1',
       title: 'Sun Business Man of the Year: Dr. Obiora Chukwuka',
       excerpt: 'Greenlife\'s Chairman receives the prestigious Sun Business Man of the Year award, recognizing over 27 years of pioneering leadership in the West African pharmaceutical landscape and a commitment to quality healthcare.',
-      imageUrl: 'https://images.unsplash.com/photo-1576091160550-2173dad9946f?auto=format&fit=crop&w=800&q=80',
+      imageUrl: '/insights/male-researcher-biotechnology-laboratory-with-tablet.jpg',
       createdAt: '2024-07-20',
       category: 'Corporate',
       source: 'Sun News',
@@ -23,7 +23,7 @@ const Insights = () => {
       _id: '2',
       title: 'Greenlife Deploys MAS Technology to Curb Fake Drugs',
       excerpt: 'Greenlife Pharmaceuticals becomes a frontrunner in patient safety by deploying Mobile Authentication Service (MAS) technology, enabling real-time verification of brands like Lonart through NAFDAC-approved SMS systems.',
-      imageUrl: 'https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?auto=format&fit=crop&w=800&q=80',
+      imageUrl: '/insights/man-working-as-pharmacist.jpg',
       createdAt: '2024-06-10',
       category: 'Innovation',
       source: 'Vanguard',
@@ -33,7 +33,7 @@ const Insights = () => {
       _id: '3',
       title: 'Greenlife Boss Calls for Stringent Measures Against Substandard Medicines',
       excerpt: 'Strategic partnership with NAFDAC to secure the Nigerian pharmaceutical supply chain. Dr. Obiora emphasizes the need for punitive measures to protect the integrity of life-saving medications.',
-      imageUrl: 'https://plus.unsplash.com/premium_photo-1664475450083-5c9eef17a351?auto=format&fit=crop&w=800&q=80',
+      imageUrl: '/insights/portrait-woman-working-pharmaceutical-industry (5).jpg',
       createdAt: '2024-05-15',
       category: 'Partnership',
       source: 'ThisDay',
@@ -43,7 +43,7 @@ const Insights = () => {
       _id: '4',
       title: 'The Compelling Narrative of Greenlife\'s Success',
       excerpt: 'Exploring the 27-year journey of Greenlife Pharmaceuticals from its humble beginnings to becoming a dominant force in the African pharmaceutical industry, driven by vision and quality.',
-      imageUrl: '/african-american-woman-pharmacist-smiling-confident-standing-pharmacy (1) Small.jpeg',
+      imageUrl: '/insights/male-researcher-biotechnology-laboratory-with-tablet.jpg',
       createdAt: '2024-04-10',
       category: 'Corporate',
       source: 'BusinessDay',
@@ -73,7 +73,7 @@ const Insights = () => {
       <div 
         className="relative pt-32 pb-20 overflow-hidden bg-cover bg-center"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=2000')`
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/insights/man-working-as-pharmacist.jpg')})`
         }}
       >
         <div className="relative max-w-6xl mx-auto px-4">
@@ -126,7 +126,7 @@ const Insights = () => {
                 {/* Image Container */}
                 <div className={`${index === 0 ? 'md:w-1/2 h-full' : 'aspect-video'} overflow-hidden relative`}>
                   <img
-                    src={post.imageUrl.startsWith('http') ? post.imageUrl : encodeURI(post.imageUrl)}
+                    src={encodeURI(post.imageUrl)}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     style={{ minHeight: '200px' }}

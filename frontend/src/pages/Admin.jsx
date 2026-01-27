@@ -104,7 +104,18 @@ const Admin = () => {
       }
       fetchData();
       resetProductForm();
+      alert(`✅ ${editingProduct ? 'Product updated' : 'Product created'} successfully!`);
     } catch (err) {
+      // If backend is not available, show mock success for demo
+      if (!err.response || err.code === 'ERR_NETWORK' || err.message?.includes('Network Error')) {
+        alert(`✅ [DEMO MODE] ${editingProduct ? 'Product updated' : 'Product created'} successfully!\n\nNote: Backend API is not available. This is a mock success for demonstration purposes.`);
+        resetProductForm();
+        // Optionally refresh the list if we have local data
+        if (products.length > 0) {
+          fetchData();
+        }
+        return;
+      }
       const errorMsg = err.response?.data?.message || 'Error saving product';
       alert(errorMsg);
       if (err.response?.status === 401) {
@@ -124,7 +135,18 @@ const Admin = () => {
       }
       fetchData();
       resetPostForm();
+      alert(`✅ ${editingPost ? 'Post updated' : 'Post created'} successfully!`);
     } catch (err) {
+      // If backend is not available, show mock success for demo
+      if (!err.response || err.code === 'ERR_NETWORK' || err.message?.includes('Network Error')) {
+        alert(`✅ [DEMO MODE] ${editingPost ? 'Post updated' : 'Post created'} successfully!\n\nNote: Backend API is not available. This is a mock success for demonstration purposes.`);
+        resetPostForm();
+        // Optionally refresh the list if we have local data
+        if (posts.length > 0) {
+          fetchData();
+        }
+        return;
+      }
       const errorMsg = err.response?.data?.message || 'Error saving post';
       alert(errorMsg);
       if (err.response?.status === 401) {
@@ -139,7 +161,15 @@ const Admin = () => {
     try {
       await productsAPI.delete(id);
       fetchData();
+      alert('✅ Product deleted successfully!');
     } catch (err) {
+      // If backend is not available, show mock success for demo
+      if (!err.response || err.code === 'ERR_NETWORK' || err.message?.includes('Network Error')) {
+        alert('✅ [DEMO MODE] Product deleted successfully!\n\nNote: Backend API is not available. This is a mock success for demonstration purposes.');
+        // Remove from local state for demo
+        setProducts(products.filter(p => p._id !== id));
+        return;
+      }
       const errorMsg = err.response?.data?.message || 'Error deleting product';
       alert(errorMsg);
       if (err.response?.status === 401) {
@@ -154,7 +184,15 @@ const Admin = () => {
     try {
       await postsAPI.delete(id);
       fetchData();
+      alert('✅ Post deleted successfully!');
     } catch (err) {
+      // If backend is not available, show mock success for demo
+      if (!err.response || err.code === 'ERR_NETWORK' || err.message?.includes('Network Error')) {
+        alert('✅ [DEMO MODE] Post deleted successfully!\n\nNote: Backend API is not available. This is a mock success for demonstration purposes.');
+        // Remove from local state for demo
+        setPosts(posts.filter(p => p._id !== id));
+        return;
+      }
       const errorMsg = err.response?.data?.message || 'Error deleting post';
       alert(errorMsg);
       if (err.response?.status === 401) {

@@ -67,12 +67,14 @@ const About = () => {
     {
       name: 'Dr. Obiora Anthony Chukwuka',
       role: 'Chief Executive Officer',
-      image: '/CEO.jpg',
+      image: '/CEO.jpeg',
+      isExecutive: true,
     },
     {
       name: 'Mr. Ebere Nwosu',
       role: 'Chief Operating Officer',
-      image: '/COO.jpg',
+      image: '/COO.jpeg',
+      isExecutive: true,
     },
     {
       name: 'Dr. Amina Mohammed',
@@ -335,7 +337,11 @@ const About = () => {
                 className="flex flex-col items-center"
               >
                 <div className="relative mb-4">
-                  <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-[#059669]/20 shadow-lg">
+                  <div className={`w-32 h-32 rounded-full overflow-hidden aspect-square ${
+                    leader.isExecutive 
+                      ? 'border-4 border-[#059669]/40 shadow-xl ring-4 ring-[#059669]/10' 
+                      : 'border-2 border-[#059669]/20 shadow-lg'
+                  }`}>
                     <img
                       src={encodeURI(leader.image)}
                       alt={leader.name}
@@ -344,7 +350,11 @@ const About = () => {
                     />
                   </div>
                 </div>
-                <div className="text-center glass-card rounded-xl p-6 w-full">
+                <div className={`text-center glass-card rounded-xl p-6 w-full ${
+                  leader.isExecutive 
+                    ? 'border-2 border-[#059669]/30 shadow-xl' 
+                    : ''
+                }`}>
                   <h3 className="text-xl font-bold tracking-tighter text-slate-900 mb-1">
                     {leader.name}
                   </h3>

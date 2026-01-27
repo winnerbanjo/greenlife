@@ -6,9 +6,10 @@ const Dashboard = () => {
   const [stats, setStats] = useState({ products: 0, posts: 0 });
 
   useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
     Promise.all([
-      fetch('http://localhost:5000/api/products').then((res) => res.json()),
-      fetch('http://localhost:5000/api/posts').then((res) => res.json()),
+      fetch(`${apiUrl}/products`).then((res) => res.json()),
+      fetch(`${apiUrl}/posts`).then((res) => res.json()),
     ])
       .then(([products, posts]) => {
         setStats({ products: products.length, posts: posts.length });

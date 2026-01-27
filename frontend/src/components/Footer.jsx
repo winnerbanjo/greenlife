@@ -3,6 +3,11 @@ import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from 'luc
 
 const Footer = () => {
   const googleMapsSearchUrl = 'https://www.google.com/maps/search/?api=1&query=Ilupeju+Industrial+Estate+Lagos+Nigeria';
+  
+  // Scroll to top handler for footer links
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
     <footer className="bg-slate-950 text-white">
@@ -15,32 +20,32 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/about" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/about" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/about#leadership" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/about#leadership" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Leadership
                 </Link>
               </li>
               <li>
-                <Link to="/about#timeline" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/about#timeline" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   History
                 </Link>
               </li>
               <li>
-                <Link to="/careers" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/careers" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Career
                 </Link>
               </li>
               <li>
-                <Link to="/insights" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/insights" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   News & Media
                 </Link>
               </li>
               <li>
-                <Link to="/about#investors" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/about#investors" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Investors
                 </Link>
               </li>
@@ -54,37 +59,37 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/catalogue?category=Anti-Malarials" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/catalogue?category=Anti-Malarials" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Anti-Malarials
                 </Link>
               </li>
               <li>
-                <Link to="/catalogue?category=Antibiotics" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/catalogue?category=Antibiotics" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Antibiotics
                 </Link>
               </li>
               <li>
-                <Link to="/catalogue?category=Cardiovascular" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/catalogue?category=Cardiovascular" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Cardiovascular
                 </Link>
               </li>
               <li>
-                <Link to="/catalogue?category=Multivitamins" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/catalogue?category=Multivitamins" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Multivitamins
                 </Link>
               </li>
               <li>
-                <Link to="/catalogue?category=Fertility" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/catalogue?category=Fertility" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Fertility Solutions
                 </Link>
               </li>
               <li>
-                <Link to="/catalogue?category=Anti-Diabetics" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/catalogue?category=Anti-Diabetics" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Anti-Diabetics
                 </Link>
               </li>
               <li>
-                <Link to="/catalogue?category=Pain Management" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/catalogue?category=Pain Management" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Pain Management
                 </Link>
               </li>
@@ -98,22 +103,22 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/admin" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/partner-hub" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Distributor Portal
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/contact" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Registered Distributors
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/business-opportunity" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Business Opportunity
                 </Link>
               </li>
               <li>
-                <Link to="/admin" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/admin" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Partner Login
                 </Link>
               </li>
@@ -127,32 +132,32 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/contact" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/contact" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link to="/coming-soon" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/quality-policy" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Quality Policy
                 </Link>
               </li>
               <li>
-                <Link to="/coming-soon" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/medicine-safety" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Medicine Use & Safety
                 </Link>
               </li>
               <li>
-                <Link to="/coming-soon" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/coming-soon" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/coming-soon" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/coming-soon" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link to="/coming-soon" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/coming-soon" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Sitemap
                 </Link>
               </li>
@@ -227,19 +232,19 @@ const Footer = () => {
         <div className="border-t border-slate-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex flex-wrap gap-6 text-xs text-slate-500">
-              <Link to="/resources" className="hover:text-emerald-500 transition-colors">
+              <Link to="/resources" onClick={handleLinkClick} className="hover:text-emerald-500 transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/resources" className="hover:text-emerald-500 transition-colors">
+              <Link to="/resources" onClick={handleLinkClick} className="hover:text-emerald-500 transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/about#investors" className="hover:text-emerald-500 transition-colors">
+              <Link to="/about#investors" onClick={handleLinkClick} className="hover:text-emerald-500 transition-colors">
                 Investors
               </Link>
-              <Link to="/insights" className="hover:text-emerald-500 transition-colors">
+              <Link to="/insights" onClick={handleLinkClick} className="hover:text-emerald-500 transition-colors">
                 News & Media
               </Link>
-              <Link to="/careers" className="hover:text-emerald-500 transition-colors">
+              <Link to="/careers" onClick={handleLinkClick} className="hover:text-emerald-500 transition-colors">
                 Careers
               </Link>
             </div>

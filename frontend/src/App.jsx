@@ -21,6 +21,10 @@ import CSR from './pages/CSR';
 import Resources from './pages/Resources';
 import Careers from './pages/Careers';
 import ComingSoon from './pages/ComingSoon';
+import PartnerHub from './pages/PartnerHub';
+import QualityPolicy from './pages/QualityPolicy';
+import MedicineSafety from './pages/MedicineSafety';
+import BusinessOpportunity from './pages/BusinessOpportunity';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -50,6 +54,10 @@ function AppContent() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
+          <Route path="/partner-hub" element={<PartnerHub />} />
+          <Route path="/quality-policy" element={<QualityPolicy />} />
+          <Route path="/medicine-safety" element={<MedicineSafety />} />
+          <Route path="/business-opportunity" element={<BusinessOpportunity />} />
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />

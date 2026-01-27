@@ -12,7 +12,7 @@ const Home = () => {
   const [insights, setInsights] = useState([]);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [animatedWord, setAnimatedWord] = useState(0);
-  const words = ['Empowering', 'Protecting', 'Sustaining', 'Advancing', 'Delivering', 'Securing', 'Healing', 'Transforming', 'Reaching', 'Enriching'];
+  const words = ['Advancing', 'Empowering', 'Securing', 'Healing', 'Delivering'];
   const lifestyleImages = getLifestyleImages();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setAnimatedWord((prev) => (prev + 1) % words.length);
-    }, 3500);
+    }, 4000);
     return () => clearInterval(interval);
   }, [words.length]);
 

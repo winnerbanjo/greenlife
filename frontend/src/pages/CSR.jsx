@@ -41,7 +41,7 @@ const CSR = () => {
       <div 
         className="relative pt-32 pb-20 overflow-hidden bg-cover bg-center"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/csr/portrait-woman-working-pharmaceutical-industry (4).jpg')})`
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${encodeURI('/csr/csrheader.jpg')})`
         }}
       >
         <div className="relative max-w-6xl mx-auto px-4">

@@ -32,7 +32,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setAnimatedWord((prev) => (prev + 1) % words.length);
-    }, 2000);
+    }, 3500);
     return () => clearInterval(interval);
   }, [words.length]);
 

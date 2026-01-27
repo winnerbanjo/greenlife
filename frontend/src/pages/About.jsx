@@ -67,32 +67,32 @@ const About = () => {
     {
       name: 'Dr. Obiora Anthony Chukwuka',
       role: 'Chief Executive Officer',
-      image: '/leader Small.jpeg',
+      image: '/CEO.jpg',
     },
     {
       name: 'Mr. Ebere Nwosu',
       role: 'Chief Operating Officer',
-      image: '/leader Small.jpeg',
+      image: '/COO.jpg',
     },
     {
       name: 'Dr. Amina Mohammed',
       role: 'Chief Medical Officer',
-      image: '/leader Small.jpeg',
+      image: '/people.jpeg',
     },
     {
       name: 'Mr. Tunde Adebayo',
       role: 'Head of Quality Assurance',
-      image: '/leader Small.jpeg',
+      image: '/people.jpeg',
     },
     {
       name: 'Mrs. Chioma Okonkwo',
       role: 'Director of Operations',
-      image: '/leader Small.jpeg',
+      image: '/people.jpeg',
     },
     {
       name: 'Dr. Ibrahim Musa',
       role: 'Head of Research & Development',
-      image: '/leader Small.jpeg',
+      image: '/people.jpeg',
     },
   ];
 
@@ -311,7 +311,7 @@ const About = () => {
 
       {/* Leadership Gallery */}
       <Section>
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

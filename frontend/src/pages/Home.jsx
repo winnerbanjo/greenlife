@@ -332,7 +332,7 @@ const Home = () => {
           backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${encodeURI('/portrait-man-working-as-chemist.jpg')})`
         }}
       >
-        <div className="relative max-w-7xl mx-auto px-4">
+        <div className="relative max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -341,12 +341,10 @@ const Home = () => {
             className="max-w-2xl"
           >
             <h2 className="text-4xl lg:text-6xl font-bold tracking-tighter text-white mb-6">
-              27 Years of Excellence
+              A Legacy of Trust, A Future of Innovation
             </h2>
             <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              Over 5 million people served across Nigeria and West Africa. 
-              Our commitment to quality healthcare solutions has made us a trusted 
-              partner in pharmaceutical excellence.
+              With nearly three decades of dedicated service, Greenlife Pharmaceuticals remains at the forefront of healthcare delivery. We are committed to expanding access to life-saving medications for millions across the African continent.
             </p>
             <Link to="/about">
               <motion.button

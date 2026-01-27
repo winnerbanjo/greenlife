@@ -19,6 +19,7 @@ import Admin from './pages/Admin';
 import CSR from './pages/CSR';
 import Resources from './pages/Resources';
 import Careers from './pages/Careers';
+import ComingSoon from './pages/ComingSoon';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -46,6 +47,7 @@ function AppContent() {
           <Route path="/csr" element={<CSR />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/coming-soon" element={<ComingSoon />} />
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />

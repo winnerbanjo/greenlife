@@ -98,7 +98,7 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/resources" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/admin" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Distributor Portal
                 </Link>
               </li>
@@ -113,7 +113,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/admin" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Partner Login
                 </Link>
               </li>
@@ -132,27 +132,27 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/coming-soon" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Quality Policy
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/coming-soon" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Medicine Use & Safety
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/coming-soon" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/coming-soon" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link to="/resources" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                <Link to="/coming-soon" className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Sitemap
                 </Link>
               </li>

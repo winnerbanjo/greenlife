@@ -62,7 +62,7 @@ function AppContent() {
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
-          path="/admin"
+          path="/admin/*"
           element={
             <ProtectedRoute>
               <Admin />

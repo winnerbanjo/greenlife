@@ -1,16 +1,19 @@
 import { useState } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Package, FileText, Users, TrendingUp, LogOut } from 'lucide-react';
 
 const Admin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [password, setPassword] = useState('');
-  const [view, setView] = useState('dashboard');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (password === 'greenlife2026') {
       setIsLoggedIn(true);
       setPassword('');
+      navigate('/admin');
     } else {
       alert('Incorrect password. Please try again.');
       setPassword('');
@@ -19,8 +22,8 @@ const Admin = () => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setView('dashboard');
     setPassword('');
+    navigate('/admin/login');
   };
 
   // Mock Products Data
@@ -31,8 +34,45 @@ const Admin = () => {
     { id: 4, name: 'Artemether', category: 'Antimalarial', status: 'Active' },
   ];
 
-  // Products View Component
-  const ProductsView = () => (
+  // Dashboard Component
+  const Dashboard = () => (
+    <div>
+      <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Dashboard</h1>
+      
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-slate-900">Users</h2>
+            <Users className="text-[#059669]" size={24} />
+          </div>
+          <p className="text-4xl font-bold text-[#059669]">1,234</p>
+          <p className="text-sm text-slate-600 mt-2">Total users</p>
+        </div>
+        
+        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-slate-900">Products</h2>
+            <Package className="text-[#059669]" size={24} />
+          </div>
+          <p className="text-4xl font-bold text-[#059669]">456</p>
+          <p className="text-sm text-slate-600 mt-2">Total products</p>
+        </div>
+        
+        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-slate-900">Visits</h2>
+            <TrendingUp className="text-[#059669]" size={24} />
+          </div>
+          <p className="text-4xl font-bold text-[#059669]">12.4K</p>
+          <p className="text-sm text-slate-600 mt-2">This month</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Product Table Component
+  const ProductTable = () => (
     <div>
       <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Product Management</h1>
       <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
@@ -67,6 +107,26 @@ const Admin = () => {
       </div>
     </div>
   );
+
+  // Posts Table Component
+  const PostsTable = () => (
+    <div>
+      <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Blog Posts</h1>
+      <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
+        <p className="text-slate-600">Posts management interface coming soon...</p>
+      </div>
+    </div>
+  );
+
+  // Determine active tab based on URL
+  const getActiveTab = () => {
+    const path = location.pathname;
+    if (path.includes('/products')) return 'products';
+    if (path.includes('/posts')) return 'posts';
+    return 'dashboard';
+  };
+
+  const activeTab = getActiveTab();
 
   // Login Gate
   if (!isLoggedIn) {
@@ -127,10 +187,10 @@ const Admin = () => {
             type="button"
             onClick={() => {
               console.log('Switching to dashboard');
-              setView('dashboard');
+              navigate('/admin');
             }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              view === 'dashboard'
+              activeTab === 'dashboard'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -142,10 +202,10 @@ const Admin = () => {
             type="button"
             onClick={() => {
               console.log('Switching to products');
-              setView('products');
+              navigate('/admin/products');
             }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              view === 'products'
+              activeTab === 'products'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -157,10 +217,10 @@ const Admin = () => {
             type="button"
             onClick={() => {
               console.log('Switching to posts');
-              setView('posts');
+              navigate('/admin/posts');
             }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              view === 'posts'
+              activeTab === 'posts'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -183,52 +243,11 @@ const Admin = () => {
       {/* Content Area */}
       <main className="flex-1 ml-64 p-8 overflow-y-auto bg-white">
         <div className="max-w-7xl mx-auto">
-          {view === 'dashboard' && (
-            <div>
-              <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Dashboard</h1>
-              
-              {/* Stats Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-bold text-slate-900">Users</h2>
-                    <Users className="text-[#059669]" size={24} />
-                  </div>
-                  <p className="text-4xl font-bold text-[#059669]">1,234</p>
-                  <p className="text-sm text-slate-600 mt-2">Total users</p>
-                </div>
-                
-                <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-bold text-slate-900">Products</h2>
-                    <Package className="text-[#059669]" size={24} />
-                  </div>
-                  <p className="text-4xl font-bold text-[#059669]">456</p>
-                  <p className="text-sm text-slate-600 mt-2">Total products</p>
-                </div>
-                
-                <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-bold text-slate-900">Visits</h2>
-                    <TrendingUp className="text-[#059669]" size={24} />
-                  </div>
-                  <p className="text-4xl font-bold text-[#059669]">12.4K</p>
-                  <p className="text-sm text-slate-600 mt-2">This month</p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {view === 'products' && <ProductsView />}
-
-          {view === 'posts' && (
-            <div>
-              <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Blog Posts</h1>
-              <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
-                <p className="text-slate-600">Posts management interface coming soon...</p>
-              </div>
-            </div>
-          )}
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="products" element={<ProductTable />} />
+            <Route path="posts" element={<PostsTable />} />
+          </Routes>
         </div>
       </main>
     </div>

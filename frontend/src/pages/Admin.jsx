@@ -7,7 +7,7 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, L
 import { getProductGroups } from '../utils/products';
 
 const Admin = () => {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [view, setView] = useState('dashboard');
   const [products, setProducts] = useState([]);
   const [posts, setPosts] = useState([]);
   const [stats, setStats] = useState({ products: 0, posts: 0, totalProductImages: 0 });
@@ -502,9 +502,9 @@ const Admin = () => {
         </div>
         <nav className="space-y-2 flex-1">
           <button
-            onClick={() => setActiveTab('dashboard')}
+            onClick={() => setView('dashboard')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              activeTab === 'dashboard'
+              view === 'dashboard'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -513,9 +513,9 @@ const Admin = () => {
             Dashboard
           </button>
           <button
-            onClick={() => setActiveTab('products')}
+            onClick={() => setView('products')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              activeTab === 'products'
+              view === 'products'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -524,9 +524,9 @@ const Admin = () => {
             Products
           </button>
           <button
-            onClick={() => setActiveTab('posts')}
+            onClick={() => setView('posts')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              activeTab === 'posts'
+              view === 'posts'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -550,9 +550,19 @@ const Admin = () => {
       <main className="flex-1 p-8 overflow-y-auto bg-white border-l border-slate-200">
         <div className="max-w-[1440px] mx-auto">
           <div className="admin-content">
-            {activeTab === 'dashboard' && <DashboardStats />}
-            {activeTab === 'products' && <ProductManagementTable />}
-            {activeTab === 'posts' && <PostsManagementTable />}
+            {view === 'dashboard' && <DashboardStats />}
+            {view === 'products' && (
+              <div>
+                <div className="p-6 text-black">Product Table Loading...</div>
+                <ProductManagementTable />
+              </div>
+            )}
+            {view === 'posts' && (
+              <div>
+                <div className="p-6 text-black">Posts Table Loading...</div>
+                <PostsManagementTable />
+              </div>
+            )}
           </div>
 
         {/* Product Modal */}

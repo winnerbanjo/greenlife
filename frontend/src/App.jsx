@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import AIChatWidget from './components/AIChatWidget';
 import ScrollToTop from './components/ScrollToTop';
 import LiveChat from './components/LiveChat';
 
@@ -71,7 +70,6 @@ function AppContent() {
           }
         />
       </Routes>
-      {!isAdmin && <AIChatWidget />}
       <LiveChat />
     </div>
   );

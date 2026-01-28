@@ -7,7 +7,7 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, L
 import { getProductGroups } from '../utils/products';
 
 const Admin = () => {
-  const [currentView, setCurrentView] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState('dashboard');
   const [products, setProducts] = useState([]);
   const [posts, setPosts] = useState([]);
   const [stats, setStats] = useState({ products: 0, posts: 0, totalProductImages: 0 });
@@ -237,6 +237,256 @@ const Admin = () => {
     setShowPostModal(true);
   };
 
+  // Dashboard Stats Component
+  const DashboardStats = () => (
+    <div>
+      <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Traffic & Content Dashboard</h1>
+      
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-slate-900">Products</h2>
+            <Package className="text-[#059669]" size={24} />
+          </div>
+          <p className="text-4xl font-bold text-[#059669]">{stats.products}</p>
+          <p className="text-sm text-slate-600 mt-2">Product Groups</p>
+          {stats.totalProductImages && (
+            <p className="text-xs text-slate-500 mt-1">{stats.totalProductImages} total variants</p>
+          )}
+        </div>
+        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-slate-900">Posts</h2>
+            <FileText className="text-[#059669]" size={24} />
+          </div>
+          <p className="text-4xl font-bold text-[#059669]">{stats.posts}</p>
+          <p className="text-sm text-slate-600 mt-2">Total posts</p>
+        </div>
+        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-slate-900">Visitors</h2>
+            <Users className="text-[#059669]" size={24} />
+          </div>
+          <p className="text-4xl font-bold text-[#059669]">12.4K</p>
+          <p className="text-sm text-slate-600 mt-2">This week</p>
+        </div>
+        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-slate-900">Reach</h2>
+            <TrendingUp className="text-[#059669]" size={24} />
+          </div>
+          <p className="text-4xl font-bold text-[#059669]">28K</p>
+          <p className="text-sm text-slate-600 mt-2">This week</p>
+        </div>
+      </div>
+
+      {/* Traffic Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        {/* Weekly Traffic Chart */}
+        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <h2 className="text-xl font-bold text-slate-900 mb-6">Weekly Traffic</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={trafficData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <XAxis dataKey="name" stroke="#64748b" />
+              <YAxis stroke="#64748b" />
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: 'white', 
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '8px'
+                }} 
+              />
+              <Legend />
+              <Line type="monotone" dataKey="visitors" stroke="#059669" strokeWidth={2} name="Visitors" />
+              <Line type="monotone" dataKey="reach" stroke="#10b981" strokeWidth={2} name="Reach" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Location Distribution */}
+        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+            <MapPin className="text-[#059669]" size={20} />
+            Geographic Reach
+          </h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={locationData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {locationData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Top Pages Bar Chart */}
+      <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+        <h2 className="text-xl font-bold text-slate-900 mb-6">Page Views by Section</h2>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={[
+            { name: 'Home', views: 4520 },
+            { name: 'Products', views: 3280 },
+            { name: 'Catalogue', views: 2890 },
+            { name: 'About', views: 2150 },
+            { name: 'Insights', views: 1890 },
+            { name: 'Contact', views: 1240 },
+          ]}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+            <XAxis dataKey="name" stroke="#64748b" />
+            <YAxis stroke="#64748b" />
+            <Tooltip 
+              contentStyle={{ 
+                backgroundColor: 'white', 
+                border: '1px solid #e2e8f0',
+                borderRadius: '8px'
+              }} 
+            />
+            <Bar dataKey="views" fill="#059669" radius={[8, 8, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+
+  // Product Management Table Component
+  const ProductManagementTable = () => (
+    <div>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-4xl font-bold tracking-tighter text-slate-900">Products</h1>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => {
+            resetProductForm();
+            setShowProductModal(true);
+          }}
+          className="flex items-center gap-2 px-6 py-3 bg-[#059669] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-emerald-600 transition-colors"
+        >
+          <Plus size={20} />
+          Add Product
+        </motion.button>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <motion.div
+            key={product._id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
+          >
+            <div className="aspect-square bg-[#F8FAFC] rounded-lg overflow-hidden mb-4 flex items-center justify-center">
+              <img 
+                src={encodeURI(product.imageUrl || '/placeholder.jpg')} 
+                alt={product.name} 
+                className="max-w-full max-h-full object-contain" 
+              />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">{product.name}</h3>
+            <p className="text-sm text-[#059669] mb-3">{product.category}</p>
+            {product.featured && (
+              <span className="inline-block px-2 py-1 bg-[#059669]/10 text-[#059669] rounded text-xs font-semibold mb-3">Featured</span>
+            )}
+            <div className="flex items-center gap-2 mt-4">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => openEditProduct(product)}
+                className="flex-1 p-2 bg-[#F8FAFC] text-slate-700 rounded-lg hover:bg-slate-100 transition-colors text-sm font-semibold"
+              >
+                <Edit size={16} className="inline mr-1" />
+                Edit
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => handleDeleteProduct(product._id)}
+                className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+              >
+                <Trash2 size={16} />
+              </motion.button>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+
+  // Posts Management Table Component
+  const PostsManagementTable = () => (
+    <div>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-4xl font-bold tracking-tighter text-slate-900">Posts</h1>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => {
+            resetPostForm();
+            setShowPostModal(true);
+          }}
+          className="flex items-center gap-2 px-6 py-3 bg-[#059669] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-emerald-600 transition-colors"
+        >
+          <Plus size={20} />
+          Add Post
+        </motion.button>
+      </div>
+      <div className="rounded-xl bg-white border border-slate-200 overflow-hidden shadow-sm">
+        <table className="w-full">
+          <thead className="bg-[#F8FAFC] border-b border-slate-200">
+            <tr>
+              <th className="px-6 py-4 text-left text-sm font-bold text-slate-900 tracking-tighter">Title</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-slate-900 tracking-tighter">Excerpt</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-slate-900 tracking-tighter">Date</th>
+              <th className="px-6 py-4 text-right text-sm font-bold text-slate-900 tracking-tighter">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {posts.map((post) => (
+              <tr key={post._id} className="border-b border-slate-200 hover:bg-[#F8FAFC] transition-colors">
+                <td className="px-6 py-4 text-slate-900 font-semibold">{post.title}</td>
+                <td className="px-6 py-4 text-slate-600 text-sm">{post.excerpt || '-'}</td>
+                <td className="px-6 py-4 text-slate-500 text-sm">{new Date(post.createdAt).toLocaleDateString()}</td>
+                <td className="px-6 py-4 text-right">
+                  <div className="flex items-center justify-end gap-2">
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => openEditPost(post)}
+                      className="p-2 bg-[#F8FAFC] text-slate-700 rounded-lg hover:bg-slate-100 transition-colors"
+                    >
+                      <Edit size={18} />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => handleDeletePost(post._id)}
+                      className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                    >
+                      <Trash2 size={18} />
+                    </motion.button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex">
       {/* Sidebar */}
@@ -252,9 +502,9 @@ const Admin = () => {
         </div>
         <nav className="space-y-2 flex-1">
           <button
-            onClick={() => setCurrentView('dashboard')}
+            onClick={() => setActiveTab('dashboard')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              currentView === 'dashboard'
+              activeTab === 'dashboard'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -263,9 +513,9 @@ const Admin = () => {
             Dashboard
           </button>
           <button
-            onClick={() => setCurrentView('products')}
+            onClick={() => setActiveTab('products')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              currentView === 'products'
+              activeTab === 'products'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -274,9 +524,9 @@ const Admin = () => {
             Products
           </button>
           <button
-            onClick={() => setCurrentView('posts')}
+            onClick={() => setActiveTab('posts')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              currentView === 'posts'
+              activeTab === 'posts'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -299,252 +549,11 @@ const Admin = () => {
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-y-auto bg-white border-l border-slate-200">
         <div className="max-w-[1440px] mx-auto">
-        {currentView === 'dashboard' && (
-          <div>
-            <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Traffic & Content Dashboard</h1>
-            
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-              <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-bold text-slate-900">Products</h2>
-                  <Package className="text-[#059669]" size={24} />
-                </div>
-                <p className="text-4xl font-bold text-[#059669]">{stats.products}</p>
-                <p className="text-sm text-slate-600 mt-2">Product Groups</p>
-                {stats.totalProductImages && (
-                  <p className="text-xs text-slate-500 mt-1">{stats.totalProductImages} total variants</p>
-                )}
-              </div>
-              <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-bold text-slate-900">Posts</h2>
-                  <FileText className="text-[#059669]" size={24} />
-                </div>
-                <p className="text-4xl font-bold text-[#059669]">{stats.posts}</p>
-                <p className="text-sm text-slate-600 mt-2">Total posts</p>
-              </div>
-              <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-bold text-slate-900">Visitors</h2>
-                  <Users className="text-[#059669]" size={24} />
-                </div>
-                <p className="text-4xl font-bold text-[#059669]">12.4K</p>
-                <p className="text-sm text-slate-600 mt-2">This week</p>
-              </div>
-              <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-bold text-slate-900">Reach</h2>
-                  <TrendingUp className="text-[#059669]" size={24} />
-                </div>
-                <p className="text-4xl font-bold text-[#059669]">28K</p>
-                <p className="text-sm text-slate-600 mt-2">This week</p>
-              </div>
-            </div>
-
-            {/* Traffic Charts */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-              {/* Weekly Traffic Chart */}
-              <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-                <h2 className="text-xl font-bold text-slate-900 mb-6">Weekly Traffic</h2>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={trafficData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                    <XAxis dataKey="name" stroke="#64748b" />
-                    <YAxis stroke="#64748b" />
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: 'white', 
-                        border: '1px solid #e2e8f0',
-                        borderRadius: '8px'
-                      }} 
-                    />
-                    <Legend />
-                    <Line type="monotone" dataKey="visitors" stroke="#059669" strokeWidth={2} name="Visitors" />
-                    <Line type="monotone" dataKey="reach" stroke="#10b981" strokeWidth={2} name="Reach" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-
-              {/* Location Distribution */}
-              <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-                <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                  <MapPin className="text-[#059669]" size={20} />
-                  Geographic Reach
-                </h2>
-                <ResponsiveContainer width="100%" height={300}>
-                  <PieChart>
-                    <Pie
-                      data={locationData}
-                      cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                      outerRadius={100}
-                      fill="#8884d8"
-                      dataKey="value"
-                    >
-                      {locationData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Top Pages Bar Chart */}
-            <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-              <h2 className="text-xl font-bold text-slate-900 mb-6">Page Views by Section</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={[
-                  { name: 'Home', views: 4520 },
-                  { name: 'Products', views: 3280 },
-                  { name: 'Catalogue', views: 2890 },
-                  { name: 'About', views: 2150 },
-                  { name: 'Insights', views: 1890 },
-                  { name: 'Contact', views: 1240 },
-                ]}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                  <XAxis dataKey="name" stroke="#64748b" />
-                  <YAxis stroke="#64748b" />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: 'white', 
-                      border: '1px solid #e2e8f0',
-                      borderRadius: '8px'
-                    }} 
-                  />
-                  <Bar dataKey="views" fill="#059669" radius={[8, 8, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
+          <div className="admin-content">
+            {activeTab === 'dashboard' && <DashboardStats />}
+            {activeTab === 'products' && <ProductManagementTable />}
+            {activeTab === 'posts' && <PostsManagementTable />}
           </div>
-        )}
-
-        {currentView === 'products' && (
-          <div>
-            <div className="flex items-center justify-between mb-8">
-              <h1 className="text-4xl font-bold tracking-tighter text-slate-900">Products</h1>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  resetProductForm();
-                  setShowProductModal(true);
-                }}
-                className="flex items-center gap-2 px-6 py-3 bg-[#059669] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-emerald-600 transition-colors"
-              >
-                <Plus size={20} />
-                Add Product
-              </motion.button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {products.map((product) => (
-                <motion.div
-                  key={product._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
-                >
-                  <div className="aspect-square bg-[#F8FAFC] rounded-lg overflow-hidden mb-4 flex items-center justify-center">
-                    <img 
-                      src={encodeURI(product.imageUrl || '/placeholder.jpg')} 
-                      alt={product.name} 
-                      className="max-w-full max-h-full object-contain" 
-                    />
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">{product.name}</h3>
-                  <p className="text-sm text-[#059669] mb-3">{product.category}</p>
-                  {product.featured && (
-                    <span className="inline-block px-2 py-1 bg-[#059669]/10 text-[#059669] rounded text-xs font-semibold mb-3">Featured</span>
-                  )}
-                  <div className="flex items-center gap-2 mt-4">
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => openEditProduct(product)}
-                      className="flex-1 p-2 bg-[#F8FAFC] text-slate-700 rounded-lg hover:bg-slate-100 transition-colors text-sm font-semibold"
-                    >
-                      <Edit size={16} className="inline mr-1" />
-                      Edit
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => handleDeleteProduct(product._id)}
-                      className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
-                    >
-                      <Trash2 size={16} />
-                    </motion.button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {currentView === 'posts' && (
-          <div>
-            <div className="flex items-center justify-between mb-8">
-              <h1 className="text-4xl font-bold tracking-tighter text-slate-900">Posts</h1>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  resetPostForm();
-                  setShowPostModal(true);
-                }}
-                className="flex items-center gap-2 px-6 py-3 bg-[#059669] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-emerald-600 transition-colors"
-              >
-                <Plus size={20} />
-                Add Post
-              </motion.button>
-            </div>
-            <div className="rounded-xl bg-white border border-slate-200 overflow-hidden shadow-sm">
-              <table className="w-full">
-                <thead className="bg-[#F8FAFC] border-b border-slate-200">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-slate-900 tracking-tighter">Title</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-slate-900 tracking-tighter">Excerpt</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-slate-900 tracking-tighter">Date</th>
-                    <th className="px-6 py-4 text-right text-sm font-bold text-slate-900 tracking-tighter">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {posts.map((post) => (
-                    <tr key={post._id} className="border-b border-slate-200 hover:bg-[#F8FAFC] transition-colors">
-                      <td className="px-6 py-4 text-slate-900 font-semibold">{post.title}</td>
-                      <td className="px-6 py-4 text-slate-600 text-sm">{post.excerpt || '-'}</td>
-                      <td className="px-6 py-4 text-slate-500 text-sm">{new Date(post.createdAt).toLocaleDateString()}</td>
-                      <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => openEditPost(post)}
-                            className="p-2 bg-[#F8FAFC] text-slate-700 rounded-lg hover:bg-slate-100 transition-colors"
-                          >
-                            <Edit size={18} />
-                          </motion.button>
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => handleDeletePost(post._id)}
-                            className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
-                          >
-                            <Trash2 size={18} />
-                          </motion.button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
 
         {/* Product Modal */}
         {showProductModal && (

@@ -23,6 +23,51 @@ const Admin = () => {
     setPassword('');
   };
 
+  // Mock Products Data
+  const mockProducts = [
+    { id: 1, name: 'G-Mal', category: 'Antimalarial', status: 'Active' },
+    { id: 2, name: 'Lonart', category: 'Antimalarial', status: 'Active' },
+    { id: 3, name: 'P-Alaxin', category: 'Antimalarial', status: 'Active' },
+    { id: 4, name: 'Artemether', category: 'Antimalarial', status: 'Active' },
+  ];
+
+  // Products View Component
+  const ProductsView = () => (
+    <div>
+      <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Product Management</h1>
+      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+        <table className="w-full">
+          <thead className="bg-[#F8FAFC] border-b border-slate-200">
+            <tr>
+              <th className="px-6 py-4 text-left text-sm font-bold text-slate-900">Product Name</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-slate-900">Category</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-slate-900">Status</th>
+              <th className="px-6 py-4 text-right text-sm font-bold text-slate-900">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mockProducts.map((product) => (
+              <tr key={product.id} className="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                <td className="px-6 py-4 text-slate-900 font-semibold">{product.name}</td>
+                <td className="px-6 py-4 text-slate-600">{product.category}</td>
+                <td className="px-6 py-4">
+                  <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">
+                    {product.status}
+                  </span>
+                </td>
+                <td className="px-6 py-4 text-right">
+                  <button className="text-[#059669] hover:text-emerald-600 font-semibold text-sm">
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+
   // Login Gate
   if (!isLoggedIn) {
     return (
@@ -161,31 +206,7 @@ const Admin = () => {
             </div>
           )}
 
-          {view === 'products' && (
-            <div>
-              <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Product Management</h1>
-              <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                <table className="w-full">
-                  <thead className="bg-[#F8FAFC] border-b border-slate-200">
-                    <tr>
-                      <th className="px-6 py-4 text-left text-sm font-bold text-slate-900">Product Name</th>
-                      <th className="px-6 py-4 text-left text-sm font-bold text-slate-900">Category</th>
-                      <th className="px-6 py-4 text-left text-sm font-bold text-slate-900">Status</th>
-                      <th className="px-6 py-4 text-right text-sm font-bold text-slate-900">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-slate-200">
-                      <td className="px-6 py-4 text-slate-900">-</td>
-                      <td className="px-6 py-4 text-slate-600">-</td>
-                      <td className="px-6 py-4 text-slate-600">-</td>
-                      <td className="px-6 py-4 text-right text-slate-600">-</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
+          {view === 'products' && <ProductsView />}
 
           {view === 'posts' && (
             <div>

@@ -28,6 +28,15 @@ const Admin = () => {
     author: '',
   });
 
+  // Check login persistence on mount
+  useEffect(() => {
+    const adminAuth = localStorage.getItem('adminAuth');
+    if (adminAuth === 'true') {
+      setIsLoggedIn(true);
+      navigate('/admin');
+    }
+  }, [navigate]);
+
   // Load data from localStorage on mount
   useEffect(() => {
     if (isLoggedIn) {
@@ -80,6 +89,7 @@ const Admin = () => {
     e.preventDefault();
     if (password === 'greenlife2026') {
       setIsLoggedIn(true);
+      localStorage.setItem('adminAuth', 'true');
       setPassword('');
       navigate('/admin');
     } else {
@@ -90,6 +100,7 @@ const Admin = () => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    localStorage.removeItem('adminAuth');
     setPassword('');
     navigate('/admin/login');
   };
@@ -97,20 +108,18 @@ const Admin = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProductForm({
-          ...productForm,
-          image: file,
-          imagePreview: reader.result,
-        });
-      };
-      reader.readAsDataURL(file);
+      const imageUrl = URL.createObjectURL(file);
+      setProductForm({
+        ...productForm,
+        image: file,
+        imagePreview: imageUrl,
+      });
     }
   };
 
   const handleProductSubmit = (e) => {
     e.preventDefault();
+    
     const newProduct = {
       id: editingProduct ? editingProduct.id : Date.now(),
       name: productForm.name,
@@ -126,6 +135,12 @@ const Admin = () => {
     } else {
       setProducts([...products, newProduct]);
     }
+
+    // Save to localStorage immediately
+    const updatedProducts = editingProduct 
+      ? products.map(p => p.id === editingProduct.id ? newProduct : p)
+      : [...products, newProduct];
+    localStorage.setItem('adminProducts', JSON.stringify(updatedProducts));
 
     resetProductForm();
   };

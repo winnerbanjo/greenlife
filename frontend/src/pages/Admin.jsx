@@ -56,7 +56,7 @@ const Admin = () => {
                   </span>
                 </td>
                 <td className="px-6 py-4 text-right">
-                  <button className="text-[#059669] hover:text-emerald-600 font-semibold text-sm">
+                  <button type="button" className="text-[#059669] hover:text-emerald-600 font-semibold text-sm">
                     Edit
                   </button>
                 </td>
@@ -110,7 +110,7 @@ const Admin = () => {
   // Main Admin Panel
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex">
-      {/* Fixed Sidebar */}
+      {/* Fixed Sidebar - Direct HTML */}
       <aside className="w-64 bg-slate-900 text-white min-h-screen p-6 flex flex-col shadow-lg fixed left-0 top-0">
         <div className="mb-8">
           <img
@@ -124,7 +124,11 @@ const Admin = () => {
         
         <nav className="space-y-2 flex-1">
           <button
-            onClick={() => setView('dashboard')}
+            type="button"
+            onClick={() => {
+              console.log('Switching to dashboard');
+              setView('dashboard');
+            }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
               view === 'dashboard'
                 ? 'bg-[#059669] text-white'
@@ -135,7 +139,11 @@ const Admin = () => {
             Dashboard
           </button>
           <button
-            onClick={() => setView('products')}
+            type="button"
+            onClick={() => {
+              console.log('Switching to products');
+              setView('products');
+            }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
               view === 'products'
                 ? 'bg-[#059669] text-white'
@@ -146,7 +154,11 @@ const Admin = () => {
             Products
           </button>
           <button
-            onClick={() => setView('posts')}
+            type="button"
+            onClick={() => {
+              console.log('Switching to posts');
+              setView('posts');
+            }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
               view === 'posts'
                 ? 'bg-[#059669] text-white'
@@ -159,6 +171,7 @@ const Admin = () => {
         </nav>
 
         <button
+          type="button"
           onClick={handleLogout}
           className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all mt-4"
         >

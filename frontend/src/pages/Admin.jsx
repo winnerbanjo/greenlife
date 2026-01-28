@@ -7,7 +7,7 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, L
 import { getProductGroups } from '../utils/products';
 
 const Admin = () => {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [currentView, setCurrentView] = useState('dashboard');
   const [products, setProducts] = useState([]);
   const [posts, setPosts] = useState([]);
   const [stats, setStats] = useState({ products: 0, posts: 0, totalProductImages: 0 });
@@ -252,9 +252,9 @@ const Admin = () => {
         </div>
         <nav className="space-y-2 flex-1">
           <button
-            onClick={() => setActiveTab('dashboard')}
+            onClick={() => setCurrentView('dashboard')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              activeTab === 'dashboard'
+              currentView === 'dashboard'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -263,9 +263,9 @@ const Admin = () => {
             Dashboard
           </button>
           <button
-            onClick={() => setActiveTab('products')}
+            onClick={() => setCurrentView('products')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              activeTab === 'products'
+              currentView === 'products'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -274,9 +274,9 @@ const Admin = () => {
             Products
           </button>
           <button
-            onClick={() => setActiveTab('posts')}
+            onClick={() => setCurrentView('posts')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              activeTab === 'posts'
+              currentView === 'posts'
                 ? 'bg-[#059669] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -299,7 +299,7 @@ const Admin = () => {
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-y-auto bg-white border-l border-slate-200">
         <div className="max-w-[1440px] mx-auto">
-        {activeTab === 'dashboard' && (
+        {currentView === 'dashboard' && (
           <div>
             <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Traffic & Content Dashboard</h1>
             
@@ -423,7 +423,7 @@ const Admin = () => {
           </div>
         )}
 
-        {activeTab === 'products' && (
+        {currentView === 'products' && (
           <div>
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-4xl font-bold tracking-tighter text-slate-900">Products</h1>
@@ -485,7 +485,7 @@ const Admin = () => {
           </div>
         )}
 
-        {activeTab === 'posts' && (
+        {currentView === 'posts' && (
           <div>
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-4xl font-bold tracking-tighter text-slate-900">Posts</h1>

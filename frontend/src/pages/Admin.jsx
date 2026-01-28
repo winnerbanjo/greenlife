@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Package, FileText, Users, TrendingUp, LogOut, Plus, Edit, Trash2, X, Upload } from 'lucide-react';
-import { LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LayoutDashboard, Package, FileText, Users, TrendingUp, LogOut, Plus, Edit, Trash2, X, Upload, AlertCircle, MessageSquare } from 'lucide-react';
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const Admin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -9,8 +9,11 @@ const Admin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [products, setProducts] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [showProductModal, setShowProductModal] = useState(false);
+  const [showPostModal, setShowPostModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [editingPost, setEditingPost] = useState(null);
   const [productForm, setProductForm] = useState({
     name: '',
     category: '',
@@ -19,11 +22,18 @@ const Admin = () => {
     image: null,
     imagePreview: null,
   });
+  const [postForm, setPostForm] = useState({
+    title: '',
+    content: '',
+    author: '',
+  });
 
-  // Load products from localStorage on mount
+  // Load data from localStorage on mount
   useEffect(() => {
     if (isLoggedIn) {
       const savedProducts = localStorage.getItem('adminProducts');
+      const savedPosts = localStorage.getItem('adminPosts');
+      
       if (savedProducts) {
         setProducts(JSON.parse(savedProducts));
       } else {
@@ -37,15 +47,34 @@ const Admin = () => {
         setProducts(initialProducts);
         localStorage.setItem('adminProducts', JSON.stringify(initialProducts));
       }
+
+      if (savedPosts) {
+        setPosts(JSON.parse(savedPosts));
+      } else {
+        // Initialize with mock posts
+        const initialPosts = [
+          { id: 1, title: 'New Antimalarial Drug Launch', content: 'We are excited to announce the launch of our new antimalarial medication...', author: 'Dr. Obiora Chukwuka', createdAt: new Date().toISOString() },
+          { id: 2, title: 'Quality Assurance Update', content: 'Our quality assurance team has completed the latest round of testing...', author: 'Quality Team', createdAt: new Date().toISOString() },
+        ];
+        setPosts(initialPosts);
+        localStorage.setItem('adminPosts', JSON.stringify(initialPosts));
+      }
     }
   }, [isLoggedIn]);
 
   // Save products to localStorage whenever products change
   useEffect(() => {
-    if (isLoggedIn && products.length > 0) {
+    if (isLoggedIn && products.length >= 0) {
       localStorage.setItem('adminProducts', JSON.stringify(products));
     }
   }, [products, isLoggedIn]);
+
+  // Save posts to localStorage whenever posts change
+  useEffect(() => {
+    if (isLoggedIn && posts.length >= 0) {
+      localStorage.setItem('adminPosts', JSON.stringify(posts));
+    }
+  }, [posts, isLoggedIn]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -133,116 +162,122 @@ const Admin = () => {
     setShowProductModal(false);
   };
 
-  // Mock Analytics Data
-  const monthlySalesData = [
-    { month: 'Jan', sales: 45000, inquiries: 120 },
-    { month: 'Feb', sales: 52000, inquiries: 145 },
-    { month: 'Mar', sales: 48000, inquiries: 130 },
-    { month: 'Apr', sales: 61000, inquiries: 165 },
-    { month: 'May', sales: 55000, inquiries: 150 },
-    { month: 'Jun', sales: 67000, inquiries: 180 },
-  ];
+  const handlePostSubmit = (e) => {
+    e.preventDefault();
+    const newPost = {
+      id: editingPost ? editingPost.id : Date.now(),
+      title: postForm.title,
+      content: postForm.content,
+      author: postForm.author,
+      createdAt: editingPost ? editingPost.createdAt : new Date().toISOString(),
+    };
 
-  const categoryData = [
-    { name: 'Antimalarial', value: 45, color: '#03a84e' },
-    { name: 'Antibiotics', value: 25, color: '#10b981' },
-    { name: 'Vitamins', value: 20, color: '#34d399' },
-    { name: 'Others', value: 10, color: '#6ee7b7' },
+    if (editingPost) {
+      setPosts(posts.map(p => p.id === editingPost.id ? newPost : p));
+    } else {
+      setPosts([...posts, newPost]);
+    }
+
+    resetPostForm();
+  };
+
+  const handleEditPost = (post) => {
+    setEditingPost(post);
+    setPostForm({
+      title: post.title,
+      content: post.content,
+      author: post.author,
+    });
+    setShowPostModal(true);
+  };
+
+  const handleDeletePost = (id) => {
+    if (confirm('Are you sure you want to delete this post?')) {
+      setPosts(posts.filter(p => p.id !== id));
+    }
+  };
+
+  const resetPostForm = () => {
+    setPostForm({
+      title: '',
+      content: '',
+      author: '',
+    });
+    setEditingPost(null);
+    setShowPostModal(false);
+  };
+
+  // Mock Analytics Data
+  const salesGrowthData = [
+    { month: 'Jan', growth: 12 },
+    { month: 'Feb', growth: 18 },
+    { month: 'Mar', growth: 15 },
+    { month: 'Apr', growth: 22 },
+    { month: 'May', growth: 19 },
+    { month: 'Jun', growth: 25 },
   ];
 
   // Dashboard Component
-  const Dashboard = () => (
-    <div>
-      <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Dashboard</h1>
-      
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-slate-900">Users</h2>
-            <Users className="text-[#03a84e]" size={24} />
-          </div>
-          <p className="text-4xl font-bold text-[#03a84e]">1,234</p>
-          <p className="text-sm text-slate-600 mt-2">Total users</p>
-        </div>
-        
-        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-slate-900">Products</h2>
-            <Package className="text-[#03a84e]" size={24} />
-          </div>
-          <p className="text-4xl font-bold text-[#03a84e]">{products.length}</p>
-          <p className="text-sm text-slate-600 mt-2">Total products</p>
-        </div>
-        
-        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-slate-900">Visits</h2>
-            <TrendingUp className="text-[#03a84e]" size={24} />
-          </div>
-          <p className="text-4xl font-bold text-[#03a84e]">12.4K</p>
-          <p className="text-sm text-slate-600 mt-2">This month</p>
-        </div>
-      </div>
+  const Dashboard = () => {
+    const activeInquiries = 45;
+    const stockAlerts = products.filter(p => p.status === 'Low Stock').length || 3;
 
-      {/* Analytics Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        {/* Monthly Sales/Inquiries Line Chart */}
-        <div className="p-6 rounded-xl bg-slate-900 border border-slate-800 shadow-sm">
-          <h2 className="text-xl font-bold text-white mb-6">Monthly Sales & Inquiries</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={monthlySalesData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-              <XAxis dataKey="month" stroke="#9ca3af" />
-              <YAxis stroke="#9ca3af" />
-              <Tooltip 
-                contentStyle={{ 
-                  backgroundColor: '#1f2937', 
-                  border: '1px solid #374151',
-                  borderRadius: '8px',
-                  color: '#fff'
-                }} 
-              />
-              <Legend wrapperStyle={{ color: '#9ca3af' }} />
-              <Line type="monotone" dataKey="sales" stroke="#03a84e" strokeWidth={2} name="Sales (₦)" />
-              <Line type="monotone" dataKey="inquiries" stroke="#10b981" strokeWidth={2} name="Inquiries" />
-            </LineChart>
-          </ResponsiveContainer>
+    return (
+      <div>
+        <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Dashboard</h1>
+        
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-bold text-slate-900">Total Products</h2>
+              <Package className="text-[#03a84e]" size={24} />
+            </div>
+            <p className="text-4xl font-bold text-[#03a84e]">{products.length}</p>
+            <p className="text-sm text-slate-600 mt-2">Active products</p>
+          </div>
+          
+          <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-bold text-slate-900">Active Inquiries</h2>
+              <MessageSquare className="text-[#03a84e]" size={24} />
+            </div>
+            <p className="text-4xl font-bold text-[#03a84e]">{activeInquiries}</p>
+            <p className="text-sm text-slate-600 mt-2">Pending responses</p>
+          </div>
+          
+          <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-bold text-slate-900">Stock Alerts</h2>
+              <AlertCircle className="text-[#03a84e]" size={24} />
+            </div>
+            <p className="text-4xl font-bold text-[#03a84e]">{stockAlerts}</p>
+            <p className="text-sm text-slate-600 mt-2">Require attention</p>
+          </div>
         </div>
 
-        {/* Product Category Pie Chart */}
-        <div className="p-6 rounded-xl bg-slate-900 border border-slate-800 shadow-sm">
-          <h2 className="text-xl font-bold text-white mb-6">Product Categories</h2>
+        {/* Sales Growth Chart */}
+        <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm mb-8">
+          <h2 className="text-xl font-bold text-slate-900 mb-6">Sales Growth (%)</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={categoryData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                outerRadius={100}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {categoryData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
+            <BarChart data={salesGrowthData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <XAxis dataKey="month" stroke="#64748b" />
+              <YAxis stroke="#64748b" />
               <Tooltip 
                 contentStyle={{ 
-                  backgroundColor: '#1f2937', 
-                  border: '1px solid #374151',
-                  borderRadius: '8px',
-                  color: '#fff'
+                  backgroundColor: 'white', 
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '8px'
                 }} 
               />
-            </PieChart>
+              <Bar dataKey="growth" fill="#03a84e" radius={[8, 8, 0, 0]} />
+            </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   // Product Table Component
   const ProductTable = () => (
@@ -258,7 +293,7 @@ const Admin = () => {
           className="flex items-center gap-2 px-6 py-3 bg-[#03a84e] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-[#028a42] transition-colors"
         >
           <Plus size={20} />
-          Add New Product
+          Add Product
         </button>
       </div>
       <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
@@ -277,7 +312,7 @@ const Admin = () => {
             {products.length === 0 ? (
               <tr>
                 <td colSpan="6" className="px-6 py-8 text-center text-slate-500">
-                  No products found. Click "Add New Product" to get started.
+                  No products found. Click "Add Product" to get started.
                 </td>
               </tr>
             ) : (
@@ -442,10 +477,138 @@ const Admin = () => {
   // Posts Table Component
   const PostsTable = () => (
     <div>
-      <h1 className="text-4xl font-bold tracking-tighter text-slate-900 mb-8">Blog Posts</h1>
-      <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
-        <p className="text-slate-600">Posts management interface coming soon...</p>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-4xl font-bold tracking-tighter text-slate-900">Blog Posts Management</h1>
+        <button
+          type="button"
+          onClick={() => {
+            resetPostForm();
+            setShowPostModal(true);
+          }}
+          className="flex items-center gap-2 px-6 py-3 bg-[#03a84e] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-[#028a42] transition-colors"
+        >
+          <Plus size={20} />
+          Create Post
+        </button>
       </div>
+      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+        <table className="w-full">
+          <thead className="bg-[#F8FAFC] border-b border-slate-200">
+            <tr>
+              <th className="px-6 py-4 text-left text-sm font-bold text-slate-900">Title</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-slate-900">Author</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-slate-900">Date</th>
+              <th className="px-6 py-4 text-right text-sm font-bold text-slate-900">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {posts.length === 0 ? (
+              <tr>
+                <td colSpan="4" className="px-6 py-8 text-center text-slate-500">
+                  No posts found. Click "Create Post" to get started.
+                </td>
+              </tr>
+            ) : (
+              posts.map((post) => (
+                <tr key={post.id} className="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                  <td className="px-6 py-4 text-slate-900 font-semibold">{post.title}</td>
+                  <td className="px-6 py-4 text-slate-600">{post.author}</td>
+                  <td className="px-6 py-4 text-slate-500 text-sm">
+                    {new Date(post.createdAt).toLocaleDateString()}
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <div className="flex items-center justify-end gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleEditPost(post)}
+                        className="p-2 text-[#03a84e] hover:bg-green-50 rounded-lg transition-colors"
+                        title="Edit"
+                      >
+                        <Edit size={18} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleDeletePost(post.id)}
+                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        title="Delete"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Post Modal */}
+      {showPostModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-6">
+          <div className="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-xl">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-slate-900">
+                {editingPost ? 'Edit Post' : 'Create New Post'}
+              </h2>
+              <button
+                type="button"
+                onClick={resetPostForm}
+                className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+              >
+                <X size={20} className="text-slate-600" />
+              </button>
+            </div>
+            <form onSubmit={handlePostSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-slate-900 mb-2">Title</label>
+                <input
+                  type="text"
+                  value={postForm.title}
+                  onChange={(e) => setPostForm({ ...postForm, title: e.target.value })}
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-[#03a84e] focus:ring-2 focus:ring-[#03a84e]/20"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-slate-900 mb-2">Author</label>
+                <input
+                  type="text"
+                  value={postForm.author}
+                  onChange={(e) => setPostForm({ ...postForm, author: e.target.value })}
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-[#03a84e] focus:ring-2 focus:ring-[#03a84e]/20"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-slate-900 mb-2">Content</label>
+                <textarea
+                  value={postForm.content}
+                  onChange={(e) => setPostForm({ ...postForm, content: e.target.value })}
+                  rows="8"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-[#03a84e] focus:ring-2 focus:ring-[#03a84e]/20"
+                  required
+                />
+              </div>
+              <div className="flex gap-4 pt-4">
+                <button
+                  type="submit"
+                  className="flex-1 px-6 py-3 bg-[#03a84e] text-white font-bold rounded-lg hover:bg-[#028a42] transition-colors"
+                >
+                  {editingPost ? 'Update Post' : 'Create Post'}
+                </button>
+                <button
+                  type="button"
+                  onClick={resetPostForm}
+                  className="px-6 py-3 bg-slate-100 text-slate-700 font-semibold rounded-lg hover:bg-slate-200 transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 

@@ -698,7 +698,7 @@ const Admin = () => {
               console.log('Switching to dashboard');
               navigate('/admin');
             }}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
+            className={`relative z-50 pointer-events-auto w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
               activeTab === 'dashboard'
                 ? 'bg-[#03a84e] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
@@ -713,7 +713,7 @@ const Admin = () => {
               console.log('Switching to products');
               navigate('/admin/products');
             }}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
+            className={`relative z-50 pointer-events-auto w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
               activeTab === 'products'
                 ? 'bg-[#03a84e] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
@@ -728,7 +728,7 @@ const Admin = () => {
               console.log('Switching to posts');
               navigate('/admin/posts');
             }}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
+            className={`relative z-50 pointer-events-auto w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
               activeTab === 'posts'
                 ? 'bg-[#03a84e] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
@@ -742,7 +742,7 @@ const Admin = () => {
         <button
           type="button"
           onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all mt-4"
+          className="relative z-50 pointer-events-auto w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all mt-4"
         >
           <LogOut size={20} />
           Logout
@@ -750,7 +750,7 @@ const Admin = () => {
       </aside>
 
       {/* Content Area */}
-      <main className="flex-1 ml-64 p-8 overflow-y-auto bg-white">
+      <main className="flex-1 ml-64 p-8 overflow-y-auto bg-white relative z-0">
         <div className="max-w-7xl mx-auto">
           <Routes>
             <Route path="/" element={<Dashboard />} />

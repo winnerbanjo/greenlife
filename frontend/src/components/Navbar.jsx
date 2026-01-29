@@ -31,12 +31,6 @@ const Navbar = () => {
     {
       name: 'About Us',
       path: '/about',
-      megaMenu: [
-        { name: 'History', path: '/about#timeline', icon: History },
-        { name: 'Leadership', path: '/about#leadership', icon: Users },
-        { name: 'Core Values', path: '/about#values', icon: Star },
-        { name: 'Impact', path: '/about#impact', icon: Globe },
-      ],
     },
     {
       name: 'Our Products',

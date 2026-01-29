@@ -680,7 +680,7 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex">
       {/* Fixed Sidebar - Direct HTML */}
-      <aside className="w-64 bg-slate-900 text-white min-h-screen p-6 flex flex-col shadow-lg fixed left-0 top-0">
+      <aside className="w-64 bg-slate-900 text-white min-h-screen p-6 flex flex-col shadow-lg fixed left-0 top-0" style={{ zIndex: 999, pointerEvents: 'auto' }}>
         <div className="mb-8">
           <img
             src={encodeURI('/GreenLife-logo-black (1).png')}

@@ -104,6 +104,11 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link to="/partner-hub" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
+                  Partner Hub
+                </Link>
+              </li>
+              <li>
+                <Link to="/partner-hub" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Distributor Portal
                 </Link>
               </li>
@@ -115,11 +120,6 @@ const Footer = () => {
               <li>
                 <Link to="/business-opportunity" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
                   Business Opportunity
-                </Link>
-              </li>
-              <li>
-                <Link to="/admin" onClick={handleLinkClick} className="text-slate-400 hover:text-emerald-500 transition-colors text-sm block inline-block">
-                  Partner Login
                 </Link>
               </li>
             </ul>

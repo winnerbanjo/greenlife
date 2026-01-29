@@ -1,19 +1,26 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Package, FileText, Users, TrendingUp, LogOut, Plus, Edit, Trash2, X, Upload, AlertCircle, MessageSquare } from 'lucide-react';
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LayoutDashboard, Package, FileText, LogOut, Plus, Edit, Trash2, X, Upload, AlertCircle, MessageSquare } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const Admin = () => {
+  // Single-gate authentication
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-  const location = useLocation();
+  
+  // State-based navigation (no URL routing)
+  const [tab, setTab] = useState('dashboard');
+  
+  // Data states
   const [products, setProducts] = useState([]);
   const [posts, setPosts] = useState([]);
+  
+  // Modal states
   const [showProductModal, setShowProductModal] = useState(false);
   const [showPostModal, setShowPostModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [editingPost, setEditingPost] = useState(null);
+  
+  // Form states
   const [productForm, setProductForm] = useState({
     name: '',
     category: '',
@@ -28,23 +35,26 @@ const Admin = () => {
     author: '',
   });
 
-  // Check login persistence on mount
+  // Check localStorage on load to persist login
   useEffect(() => {
     const adminAuth = localStorage.getItem('adminAuth');
     if (adminAuth === 'true') {
       setIsLoggedIn(true);
-      navigate('/admin');
     }
-  }, [navigate]);
+  }, []);
 
-  // Load data from localStorage on mount
+  // Load data from localStorage when logged in
   useEffect(() => {
     if (isLoggedIn) {
       const savedProducts = localStorage.getItem('adminProducts');
       const savedPosts = localStorage.getItem('adminPosts');
       
       if (savedProducts) {
-        setProducts(JSON.parse(savedProducts));
+        try {
+          setProducts(JSON.parse(savedProducts));
+        } catch (e) {
+          console.error('Error parsing products:', e);
+        }
       } else {
         // Initialize with mock data
         const initialProducts = [
@@ -58,7 +68,11 @@ const Admin = () => {
       }
 
       if (savedPosts) {
-        setPosts(JSON.parse(savedPosts));
+        try {
+          setPosts(JSON.parse(savedPosts));
+        } catch (e) {
+          console.error('Error parsing posts:', e);
+        }
       } else {
         // Initialize with mock posts
         const initialPosts = [
@@ -85,26 +99,28 @@ const Admin = () => {
     }
   }, [posts, isLoggedIn]);
 
+  // Login handler
   const handleLogin = (e) => {
     e.preventDefault();
     if (password === 'greenlife2026') {
       setIsLoggedIn(true);
       localStorage.setItem('adminAuth', 'true');
       setPassword('');
-      navigate('/admin');
     } else {
       alert('Incorrect password. Please try again.');
       setPassword('');
     }
   };
 
+  // Logout handler
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem('adminAuth');
     setPassword('');
-    navigate('/admin/login');
+    setTab('dashboard');
   };
 
+  // Product handlers
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -135,12 +151,6 @@ const Admin = () => {
     } else {
       setProducts([...products, newProduct]);
     }
-
-    // Save to localStorage immediately
-    const updatedProducts = editingProduct 
-      ? products.map(p => p.id === editingProduct.id ? newProduct : p)
-      : [...products, newProduct];
-    localStorage.setItem('adminProducts', JSON.stringify(updatedProducts));
 
     resetProductForm();
   };
@@ -177,6 +187,7 @@ const Admin = () => {
     setShowProductModal(false);
   };
 
+  // Post handlers
   const handlePostSubmit = (e) => {
     e.preventDefault();
     const newPost = {
@@ -232,7 +243,7 @@ const Admin = () => {
     { month: 'Jun', growth: 25 },
   ];
 
-  // Dashboard Component
+  // Dashboard Component (self-contained)
   const Dashboard = () => {
     const activeInquiries = 45;
     const stockAlerts = products.filter(p => p.status === 'Low Stock').length || 3;
@@ -294,7 +305,7 @@ const Admin = () => {
     );
   };
 
-  // Product Table Component
+  // Product Table Component (self-contained)
   const ProductTable = () => (
     <div>
       <div className="flex items-center justify-between mb-8">
@@ -489,7 +500,7 @@ const Admin = () => {
     </div>
   );
 
-  // Posts Table Component
+  // Posts Table Component (self-contained)
   const PostsTable = () => (
     <div>
       <div className="flex items-center justify-between mb-8">
@@ -503,7 +514,7 @@ const Admin = () => {
           className="flex items-center gap-2 px-6 py-3 bg-[#03a84e] text-white font-bold text-sm tracking-tight rounded-lg hover:bg-[#028a42] transition-colors"
         >
           <Plus size={20} />
-          Create Post
+          Add Post
         </button>
       </div>
       <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
@@ -520,7 +531,7 @@ const Admin = () => {
             {posts.length === 0 ? (
               <tr>
                 <td colSpan="4" className="px-6 py-8 text-center text-slate-500">
-                  No posts found. Click "Create Post" to get started.
+                  No posts found. Click "Add Post" to get started.
                 </td>
               </tr>
             ) : (
@@ -564,7 +575,7 @@ const Admin = () => {
           <div className="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-xl">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-slate-900">
-                {editingPost ? 'Edit Post' : 'Create New Post'}
+                {editingPost ? 'Edit Post' : 'Add New Post'}
               </h2>
               <button
                 type="button"
@@ -627,17 +638,7 @@ const Admin = () => {
     </div>
   );
 
-  // Determine active tab based on URL
-  const getActiveTab = () => {
-    const path = location.pathname;
-    if (path.includes('/products')) return 'products';
-    if (path.includes('/posts')) return 'posts';
-    return 'dashboard';
-  };
-
-  const activeTab = getActiveTab();
-
-  // Login Gate
+  // Render login screen if not logged in
   if (!isLoggedIn) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-100 flex items-center justify-center p-6">
@@ -646,7 +647,7 @@ const Admin = () => {
             <div className="w-16 h-16 bg-[#03a84e] rounded-full flex items-center justify-center mx-auto mb-4">
               <LayoutDashboard className="text-white" size={32} />
             </div>
-            <h1 className="text-3xl font-bold text-slate-900 mb-2">Admin Login</h1>
+            <h1 className="text-3xl font-bold text-slate-900 mb-2">Greenlife Admin Login</h1>
             <p className="text-slate-600">Enter password to access admin panel</p>
           </div>
           <form onSubmit={handleLogin} className="space-y-4">
@@ -676,11 +677,11 @@ const Admin = () => {
     );
   }
 
-  // Main Admin Panel
+  // Main Admin Panel with state-based navigation
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex">
-      {/* Fixed Sidebar - Direct HTML */}
-      <aside className="w-64 bg-slate-900 text-white min-h-screen p-6 flex flex-col shadow-lg fixed left-0 top-0" style={{ zIndex: 999, pointerEvents: 'auto' }}>
+      {/* Fixed Sidebar with z-[999] */}
+      <aside className="w-64 bg-slate-900 text-white min-h-screen p-6 flex flex-col shadow-lg fixed left-0 top-0 z-[999]" style={{ pointerEvents: 'auto' }}>
         <div className="mb-8">
           <img
             src={encodeURI('/GreenLife-logo-black (1).png')}
@@ -694,12 +695,9 @@ const Admin = () => {
         <nav className="space-y-2 flex-1">
           <button
             type="button"
-            onClick={() => {
-              console.log('Switching to dashboard');
-              navigate('/admin');
-            }}
-            className={`relative z-50 pointer-events-auto w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              activeTab === 'dashboard'
+            onClick={() => setTab('dashboard')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all pointer-events-auto ${
+              tab === 'dashboard'
                 ? 'bg-[#03a84e] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -707,14 +705,12 @@ const Admin = () => {
             <LayoutDashboard size={20} />
             Dashboard
           </button>
+          
           <button
             type="button"
-            onClick={() => {
-              console.log('Switching to products');
-              navigate('/admin/products');
-            }}
-            className={`relative z-50 pointer-events-auto w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              activeTab === 'products'
+            onClick={() => setTab('products')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all pointer-events-auto ${
+              tab === 'products'
                 ? 'bg-[#03a84e] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -722,14 +718,12 @@ const Admin = () => {
             <Package size={20} />
             Products
           </button>
+          
           <button
             type="button"
-            onClick={() => {
-              console.log('Switching to posts');
-              navigate('/admin/posts');
-            }}
-            className={`relative z-50 pointer-events-auto w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all ${
-              activeTab === 'posts'
+            onClick={() => setTab('posts')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm transition-all pointer-events-auto ${
+              tab === 'posts'
                 ? 'bg-[#03a84e] text-white'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
@@ -742,21 +736,19 @@ const Admin = () => {
         <button
           type="button"
           onClick={handleLogout}
-          className="relative z-50 pointer-events-auto w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all mt-4"
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all mt-4 pointer-events-auto"
         >
           <LogOut size={20} />
           Logout
         </button>
       </aside>
 
-      {/* Content Area */}
+      {/* Content Area with z-0 */}
       <main className="flex-1 ml-64 p-8 overflow-y-auto bg-white relative z-0">
         <div className="max-w-7xl mx-auto">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="products" element={<ProductTable />} />
-            <Route path="posts" element={<PostsTable />} />
-          </Routes>
+          {tab === 'dashboard' && <Dashboard />}
+          {tab === 'products' && <ProductTable />}
+          {tab === 'posts' && <PostsTable />}
         </div>
       </main>
     </div>
